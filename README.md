@@ -48,19 +48,19 @@ There are a few options that you can change from the Reveal.js options. The valu
 
 ```javascript
 Reveal.initialize({
-	// ...
-	copycode: {
-		copy: "Copy",
-		copied: "Copied!",
-		timeout: 1000,
+  // ...
+  copycode: {
+    copy: "Copy",
+    copied: "Copied!",
+    timeout: 1000,
     copybg: "orange",
     copiedbg: "green",
     copycolor: "black",
     copiedcolor: "white"
-	},
-	dependencies: [
-	// ... 
-	]
+  },
+  dependencies: [
+  // ... 
+  ]
 });
 ```
 
