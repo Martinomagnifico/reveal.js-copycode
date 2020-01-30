@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CopyCode.js for Reveal.js</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reset.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/theme/black.css">
+    <!-- Theme used for syntax highlighting of code-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/lib/css/monokai.css">
+    <link rel="stylesheet" href="assets/font/jetbrains-mono/jetbrains-mono.css">
+    <!-- Styles for CopyCode button-->
+    <link rel="stylesheet" href="assets/js/revealjs/plugin/copycode/copycode.css">
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h2>CopyCode.js for Reveal.js</h2>
+        </section>
+        <section>
+          <h4>Works out of the box</h4>
+          <pre><code class="hljs javascript" data-line-numbers>const http = require("http");
+http.createServer(function (request, response) {
+  response.writeHead(200, {"Content-Type": "text/plain"});
+  response.end("Hello World\n");
+}).listen(8081);
+</code></pre>
+          <p>A 'Copy' button is automatically added to any &lt;pre&gt; code block.</p>
+        </section>
+        <section>
+          <h4>Override button text and timing</h4>
+          <pre><code class="hljs javascript" data-line-numbers>&hellip;
+Reveal.initialize({
+  copycode: {
+    copy: &quot;Copy&quot;,
+    copied: &quot;Copied!&quot;,
+    timeout: 1000
+  },
+  dependencies: [ &hellip;</code></pre>
+          <p>Override these global default values in the Reveal.js config. The timeout is the time in milliseconds for the "Copied!"-state to revert back to "Copy".</p>
+        </section>
+        <section>
+          <h4>Override styling</h4>
+          <pre><code class="hljs javascript" data-line-numbers>&hellip;
+Reveal.initialize({
+  copycode: {
+    copybg: &quot;orange&quot;,
+    copiedbg: &quot;green&quot;,
+    copycolor: &quot;black&quot;,
+    copiedcolor: &quot;white&quot;
+  },
+  dependencies: [ &hellip;</code></pre>
+          <p>Override these global default values in the Reveal.js config.</p>
+        </section>
+        <section>
+          <h4>Turn it off or customize per element</h4>
+          <pre data-cc="false"><code class="hljs html" data-line-numbers>&lt;pre data-cc="false"&gt;
+  &lt;code&gt;
+    Here is the code	
+  &lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+          <pre data-cc-copy="Copy HTML" data-cc-copied="Done"><code class="hljs html" data-line-numbers>&lt;pre data-cc-copy="Copy HTML" data-cc-copied="Done"&gt;
+  &lt;code&gt;
+    Here is the code	
+  &lt;/code&gt;
+&lt;/pre&gt;
+</code></pre>
+        </section>
+        <section>
+          <h4>Manual styling</h4>
+          <p>Just edit the provided stylesheet.</p>
+          <pre style="white-space: pre-wrap"><code class="hljs html" data-line-numbers>&hellip;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;assets/js/revealjs/plugin/copycode/copycode.css&quot;&gt;
+&hellip;</code></pre>
+        </section>
+        <section>
+          <h4>Thanks</h4>
+          <ul>
+            <li>Hakim El Hattab for <a href="https://revealjs.com" target="_blank">Reveal.js</a></li>
+            <li>Zeno Rocha,  for <a href="https://clipboardjs.com" target="_blank">Clipboard.js</a></li>
+            <li>Philipp Nurullin and Jetbrains for <a href="https://www.jetbrains.com/lp/mono/" target="_blank">JetBrains Mono</a></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+    <script src="assets/js/revealjs/reveal.js"></script>
+    <script>
+      Reveal.initialize({
+      	transition: 'convex',
+      	history: true,
+      	copycode: {
+      		timeout: 1200
+      	},
+      	dependencies: [
+      		{ src: 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js'},
+      		{ src: 'assets/js/revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      		{ src: 'assets/js/revealjs/plugin/copycode/copycode.js'}
+      	]
+      });
+    </script>
+  </body>
+</html>
