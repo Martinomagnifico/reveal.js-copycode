@@ -17,7 +17,7 @@ then install the plugin and it will work automatically.
 
 ## Installation
 
-CopyCode.js needs another script to be able to function: Clipboard.js by Zeno Rocha. This script handles all the copy functionality.
+CopyCode.js needs another script to be able to function: [Clipboard.js](https://clipboardjs.com) by Zeno Rocha. This script handles all the copy functionality.
 
 Copy the 'copycode' folder to the plugins folder of the reveal.js folder, like this: `plugin/copycode`. Now add it to the dependencies of Reveal.js. The script for Clipboard.js is on a CDN, we add it as a dependency as well.
 
