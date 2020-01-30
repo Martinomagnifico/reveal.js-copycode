@@ -1,5 +1,5 @@
 # reveal.js-copycode
-A plugin that automatically shows a 'copy' button in code blocks in [Reveal.js](https://revealjs.com)
+A simple plugin that automatically shows a 'copy' button in code blocks in [Reveal.js](https://revealjs.com)
 
 [Demo](https://martinomagnifico.github.io/reveal.js-copycode/demo.html)
 
