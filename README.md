@@ -24,13 +24,13 @@ Copy the 'copycode' folder to the plugins folder of the reveal.js folder, like t
 
 ```javascript
 Reveal.initialize({
-	// ...
-	dependencies: [
-		// ... 
-		{ src: '//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js'},
-		{ src: 'assets/js/revealjs/plugin/copycode/copycode.js', async: false }
-		// ... 
-	]
+  // ...
+  dependencies: [
+  // ... 
+    { src: '//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js'},
+    { src: 'assets/js/revealjs/plugin/copycode/copycode.js', async: false }
+    // ... 
+  ]
 });
 ```
 Now add a link in your HTML to the stylesheet. Note that this example has an "assets" folder for resources. You can use whatever setup for the hierarchy, as long as the references are correct :-)
@@ -48,19 +48,19 @@ There are a few options that you can change from the Reveal.js options. The valu
 
 ```javascript
 Reveal.initialize({
-	// ...
-	copycode: {
-		copy: "Copy",
-		copied: "Copied!",
-		timeout: 1000,
+  // ...
+  copycode: {
+    copy: "Copy",
+    copied: "Copied!",
+    timeout: 1000,
     copybg: "orange",
     copiedbg: "green",
     copycolor: "black",
     copiedcolor: "white"
-	},
-	dependencies: [
-	// ... 
-	]
+  },
+  dependencies: [
+  // ... 
+  ]
 });
 ```
 

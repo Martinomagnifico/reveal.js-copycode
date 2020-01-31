@@ -80,13 +80,13 @@ Reveal.initialize({
           <h4>Thanks</h4>
           <ul>
             <li>Hakim El Hattab for <a href="https://revealjs.com" target="_blank">Reveal.js</a></li>
-            <li>Zeno Rocha,  for <a href="https://clipboardjs.com" target="_blank">Clipboard.js</a></li>
+            <li>Zeno Rocha, for <a href="https://clipboardjs.com" target="_blank">Clipboard.js</a></li>
             <li>Philipp Nurullin and Jetbrains for <a href="https://www.jetbrains.com/lp/mono/" target="_blank">JetBrains Mono</a></li>
           </ul>
         </section>
       </div>
     </div>
-    <script src="assets/js/revealjs/reveal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.1/js/reveal.min.js"></script>
     <script>
       Reveal.initialize({
       	transition: 'convex',
@@ -96,7 +96,7 @@ Reveal.initialize({
       	},
       	dependencies: [
       		{ src: 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js'},
-      		{ src: 'assets/js/revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      		{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.1/plugin/highlight/highlight.js'},
       		{ src: 'assets/js/revealjs/plugin/copycode/copycode.js'}
       	]
       });

@@ -11,11 +11,121 @@
  *  - Hakim El Hattab, Reveal.js
  *  - Zeno Rocha, https://clipboardjs.com
  *  - JetBrains for the cool JetBrains Mono font
-******************************************************************/
-const CopyCode=window.CopyCode||function(){
-/**
-	 * Array.prototype.forEach() polyfill
-	 * @author Chris Ferdinandi
-	 * @license MIT
-	*/
-Array.prototype.forEach||(Array.prototype.forEach=function(t,e){e=e||window;for(var o=0;o<this.length;o++)t.call(e,this[o],o,this)});let t=Reveal.getConfig().copycode||{},e={timeout:1e3,copy:"Copy",copied:"Copied!",copybg:"orange",copiedbg:"green",copycolor:"black",copiedcolor:"white"};return{init:function(){!function(t,e){for(let o in e)t.hasOwnProperty(o)||(t[o]=e[o])}(t,e);let o=`.codeblock > button { background:${t.copybg}; color:${t.copycolor}; } .codeblock > button[disabled] { background:${t.copiedbg}; color:${t.copiedcolor};}`;document.querySelectorAll("pre").forEach((function(e){e.getAttribute("data-cc")&&"false"===e.getAttribute("data-cc")||e.parentNode.classList.contains("codeblock")||function(e){let o="",c="",i=document.createElement("div");i.classList.add("codeblock"),e.parentNode.insertBefore(i,e),i.appendChild(e);let n=document.createElement("button");e.getAttribute("data-cc-copy")&&(o=e.getAttribute("data-cc-copy"),e.removeAttribute("data-cc-copy")),e.getAttribute("data-cc-copied")&&(c=e.getAttribute("data-cc-copied"),e.removeAttribute("data-cc-copied")),n.textContent=o||t.copy,n.setAttribute("data-cc-copied",c||t.copied),i.insertBefore(n,e)}(e)}));let c=new ClipboardJS(".codeblock > button",{target:function(t){return t.nextElementSibling}});!function(t){let e=document.createElement("style");e.type="text/css",e.styleSheet?e.styleSheet.cssText=t:e.appendChild(document.createTextNode(t)),document.getElementsByTagName("head")[0].appendChild(e)}(o),c.on("success",(function(e){let o=e.trigger;e.clearSelection(),o.setAttribute("data-text-original",o.innerHTML),o.innerHTML=o.getAttribute("data-cc-copied"),o.setAttribute("disabled",!0),setTimeout((function(){o.innerHTML=o.getAttribute("data-text-original"),o.removeAttribute("disabled")}),t.timeout)}))}}}();Reveal.registerPlugin("copycode",CopyCode);
+ ******************************************************************/
+const CopyCode = window.CopyCode || function () {
+
+    /**
+     * Array.prototype.forEach() polyfill
+     * @author Chris Ferdinandi
+     * @license MIT
+     */
+    if (!Array.prototype.forEach) {
+        Array.prototype.forEach = function (callback, thisArg) {
+            thisArg = thisArg || window;
+            for (var i = 0; i < this.length; i++) {
+                callback.call(thisArg, this[i], i, this);
+            }
+        };
+    }
+
+    let options = Reveal.getConfig().copycode || {};
+
+    let defaultOptions = {
+        timeout: 1000,
+        copy: "Copy",
+        copied: "Copied!",
+        copybg: "orange",
+        copiedbg: "green",
+        copycolor: "black",
+        copiedcolor: "white"
+    };
+
+    const defaults = function (options, defaultOptions) {
+        for (let i in defaultOptions) {
+            if (!options.hasOwnProperty(i)) {
+                options[i] = defaultOptions[i];
+            }
+        }
+    }
+
+    const appendStyle = function (styles) {
+        let css = document.createElement("style");
+        css.type = "text/css";
+        if (css.styleSheet) css.styleSheet.cssText = styles;
+        else css.appendChild(document.createTextNode(styles));
+        document.getElementsByTagName("head")[0].appendChild(css);
+    }
+
+    const buildStructure = function (element) {
+        let copytext = "";
+        let copiedtext = "";
+        let wrapper = document.createElement("div");
+        wrapper.classList.add("codeblock");
+        element.parentNode.insertBefore(wrapper, element);
+        wrapper.appendChild(element);
+        let copybutton = document.createElement("button");
+
+        if (element.getAttribute("data-cc-copy")) {
+            copytext = element.getAttribute("data-cc-copy");
+            element.removeAttribute("data-cc-copy");
+        }
+        if (element.getAttribute("data-cc-copied")) {
+            copiedtext = element.getAttribute("data-cc-copied");
+            element.removeAttribute("data-cc-copied");
+        }
+
+        copybutton.textContent = copytext || options.copy;
+        copybutton.setAttribute("data-cc-copied", copiedtext || options.copied);
+
+        wrapper.insertBefore(copybutton, element);
+    }
+
+
+    const init = function () {
+
+        defaults(options, defaultOptions);
+
+        let styles = `.codeblock > button { background:${options.copybg}; color:${options.copycolor}; } .codeblock > button[disabled] { background:${options.copiedbg}; color:${options.copiedcolor};}`;
+
+        let codeblocks = document.querySelectorAll("pre");
+
+        codeblocks.forEach(function (codeblock) {
+            if (codeblock.getAttribute("data-cc") && codeblock.getAttribute("data-cc") === "false") {
+                return
+            } else {
+                if (!codeblock.parentNode.classList.contains("codeblock")) {
+                    buildStructure(codeblock);
+                }
+            }
+        });
+
+        let clipboard = new ClipboardJS(".codeblock > button", {
+            target: function (trigger) {
+                return trigger.nextElementSibling;
+            }
+        });
+
+        appendStyle(styles);
+
+        clipboard.on("success", function (e) {
+            let button = e.trigger;
+            e.clearSelection();
+
+            button.setAttribute("data-text-original", button.innerHTML);
+            button.innerHTML = button.getAttribute("data-cc-copied");
+            button.setAttribute("disabled", true);
+
+            setTimeout(function () {
+                button.innerHTML = button.getAttribute("data-text-original");
+                button.removeAttribute("disabled");
+            }, options.timeout);
+        });
+    };
+
+    return {
+        init: init
+    };
+}();
+
+Reveal.registerPlugin("copycode", CopyCode);
+/* global Reveal */
