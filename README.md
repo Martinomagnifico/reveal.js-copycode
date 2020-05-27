@@ -1,44 +1,58 @@
-# reveal.js-copycode
-A simple plugin that automatically shows a 'copy' button in code blocks in [Reveal.js](https://revealjs.com)
+# CopyCode
+
+![Screenshot](screenshot.png)
+
+A simple plugin for [Reveal.js](https://revealjs.com) 4, that automatically shows a 'copy' button in code blocks. Because we always copy code during our presentations, dont’t we? 
 
 [Demo](https://martinomagnifico.github.io/reveal.js-copycode/demo.html)
 
 In Reveal.js presentations we can show blocks of code. This plugin for Reveal.js adds a 'copy' button to each of those. It's easy to set up. If your code blocks are set up like this:
+
 ```html
 <pre>
   <code>
-    Here is the code	
+    Here is the code
   </code>
 </pre>
 ```
+
 then install the plugin and it will work automatically.
 
 
 
 ## Installation
 
-CopyCode.js needs another script to be able to function: [Clipboard.js](https://clipboardjs.com) by Zeno Rocha. This script handles all the copy functionality.
-
-Copy the 'copycode' folder to the plugins folder of the reveal.js folder, like this: `plugin/copycode`. Now add it to the dependencies of Reveal.js. The script for Clipboard.js is on a CDN, we add it as a dependency as well.
+Copy the copycode folder to the plugins folder of the reveal.js folder, like this: `plugin/copycode`. Now add it to the dependencies of Reveal.js. :
 
 
-```javascript
-Reveal.initialize({
-  // ...
-  dependencies: [
-    // ... 
-    { src: '//cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js'},
-    { src: 'assets/js/revealjs/plugin/copycode/copycode.js', async: false }
-    // ... 
-  ]
-});
-```
-Now add a link in your HTML to the stylesheet. Note that this example has an "assets" folder for resources. You can use whatever setup for the hierarchy, as long as the references are correct :-)
+### JavaScript
+
+The CopyCode plugin has been rewritten for Reveal.js version 4.
+
+If you want to use CopyCode with an older version of Reveal, use the [1.0.0 version](https://github.com/Martinomagnifico/reveal.js-copycode/releases).
+
+CopyCode needs one other (great) script to be able to function: [Clipboard.js](https://clipboardjs.com/) by [Zeno Rocha](https://zenorocha.com). This uses modern techniques to copy text to clipboard.
 
 ```html
-<link rel="stylesheet" href="assets/js/revealjs/plugin/copycode/copycode.css">
+<script src="dist/reveal.js">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js">
+<script src="plugin/copycode/copycode.js"></script>
+<script>
+	Reveal.initialize({
+		// ...
+		plugins: [ CopyCode ]
+	});
+</script>
 ```
 
+
+### Styling
+
+Now add a link in your HTML to the stylesheet. 
+
+```html
+<link rel="stylesheet" href="plugin/copycode/copycode.css">
+```
 
 
 
@@ -48,29 +62,27 @@ There are a few options that you can change from the Reveal.js options. The valu
 
 ```javascript
 Reveal.initialize({
-  // ...
-  copycode: {
-    copy: "Copy",
-    copied: "Copied!",
-    timeout: 1000,
-    copybg: "orange",
-    copiedbg: "green",
-    copycolor: "black",
-    copiedcolor: "white"
-  },
-  dependencies: [
-  // ... 
-  ]
+	// ...
+	copycode: {
+		copy: "Copy",
+		copied: "Copied!",
+		timeout: 1000,
+		copybg: "orange",
+		copiedbg: "green",
+		copycolor: "black",
+		copiedcolor: "white"
+	},
+	plugins: [ CopyCode ]
 });
 ```
 
-* 'copy': The text for each copy button.
-* 'copied': The text for each copy button when the copy action is successful.
-* 'timeout': The time in milliseconds for the "Copied!"-state to revert back to "Copy".
-* 'copybg': The background color.
-* 'copiedbg': The background color in the Copied state.
-* 'copycolor': The text color.
-* 'copiedcolor': The text color in the Copied state.
+* **`copy`**: The text for each copy button.
+* **`copied`**: The text for each copy button when the copy action is successful.
+* **`timeout`**: The time in milliseconds for the "Copied!"-state to revert back to "Copy".
+* **`copybg`**: The background color.
+* **`copiedbg`**: The background color in the Copied state.
+* **`copycolor`**: The text color.
+* **`copiedcolor`**: The text color in the Copied state.
 
 
 
@@ -85,7 +97,9 @@ Turn off the button per element:
   </code>
 </pre>
 ```
+
 Or customize the button texts per element:
+
 ```html
 <pre data-cc-copy="Copy HTML" data-cc-copied="Yes!">
   <code>

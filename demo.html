@@ -1,31 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <title>CopyCode.js for Reveal.js</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reset.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/reveal.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/css/theme/black.css">
-    <!-- Theme used for syntax highlighting of code-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.8.0/lib/css/monokai.css">
-    <link rel="stylesheet" href="assets/font/jetbrains-mono/jetbrains-mono.css">
+    <meta name="author" content="Martinomagnifico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <style>
+      .slides {
+      	opacity: 0;
+      	transition: opacity .5s ease;
+      }
+      .reveal.ready .slides {
+      	opacity: 1;
+      }
+    </style>
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <link rel="stylesheet" href="css/jetbrains-mono.css">
     <!-- Styles for CopyCode button-->
-    <link rel="stylesheet" href="assets/js/revealjs/plugin/copycode/copycode.css">
+    <link rel="stylesheet" href="plugin/copycode/copycode.css">
+    <style>
+      .backgrounds {
+      	background: #1a1626;
+      }
+      
+      
+    </style>
   </head>
   <body>
     <div class="reveal">
       <div class="slides">
         <section>
-          <h2>CopyCode.js for Reveal.js</h2>
+          <h1>CopyCode</h1>
+          <h3>for Reveal.js</h3><br>
+          <pre><code class="hljs javascript" data-line-numbers>let why = `Because we always want to copy code 
+           during our presentations, right?`</code></pre>
         </section>
         <section>
           <h4>Works out of the box</h4>
           <pre><code class="hljs javascript" data-line-numbers>const http = require("http");
 http.createServer(function (request, response) {
-  response.writeHead(200, {"Content-Type": "text/plain"});
-  response.end("Hello World\n");
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.end("Hello World\n");
 }).listen(8081);
 </code></pre>
           <p>A 'Copy' button is automatically added to any &lt;pre&gt; code block.</p>
@@ -34,38 +54,38 @@ http.createServer(function (request, response) {
           <h4>Override button text and timing</h4>
           <pre><code class="hljs javascript" data-line-numbers>&hellip;
 Reveal.initialize({
-  copycode: {
-    copy: &quot;Copy&quot;,
-    copied: &quot;Copied!&quot;,
-    timeout: 1000
-  },
-  dependencies: [ &hellip;</code></pre>
+    copycode: {
+        copy: &quot;Copy&quot;,
+        copied: &quot;Copied!&quot;,
+        timeout: 1000
+    },
+    plugins: [ &hellip;</code></pre>
           <p>Override these global default values in the Reveal.js config. The timeout is the time in milliseconds for the "Copied!"-state to revert back to "Copy".</p>
         </section>
         <section>
           <h4>Override styling</h4>
           <pre><code class="hljs javascript" data-line-numbers>&hellip;
 Reveal.initialize({
-  copycode: {
-    copybg: &quot;orange&quot;,
-    copiedbg: &quot;green&quot;,
-    copycolor: &quot;black&quot;,
-    copiedcolor: &quot;white&quot;
-  },
-  dependencies: [ &hellip;</code></pre>
+    copycode: {
+        copybg: &quot;orange&quot;,
+        copiedbg: &quot;green&quot;,
+        copycolor: &quot;black&quot;,
+        copiedcolor: &quot;white&quot;
+    },
+    plugins: [ &hellip;</code></pre>
           <p>Override these global default values in the Reveal.js config.</p>
         </section>
         <section>
           <h4>Turn it off or customize per element</h4>
           <pre data-cc="false"><code class="hljs html" data-line-numbers>&lt;pre data-cc="false"&gt;
-  &lt;code&gt;
-    Here is the code	
-  &lt;/code&gt;
+    &lt;code&gt;
+        Here is the code	
+    &lt;/code&gt;
 &lt;/pre&gt;</code></pre>
           <pre data-cc-copy="Copy HTML" data-cc-copied="Done"><code class="hljs html" data-line-numbers>&lt;pre data-cc-copy="Copy HTML" data-cc-copied="Done"&gt;
-  &lt;code&gt;
-    Here is the code	
-  &lt;/code&gt;
+    &lt;code&gt;
+        Here is the code	
+    &lt;/code&gt;
 &lt;/pre&gt;
 </code></pre>
         </section>
@@ -86,7 +106,10 @@ Reveal.initialize({
         </section>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/reveal.js@3.9.1/js/reveal.min.js"></script>
+    <script src="dist/reveal.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/copycode/copycode.js"></script>
     <script>
       Reveal.initialize({
       	transition: 'convex',
@@ -94,11 +117,7 @@ Reveal.initialize({
       	copycode: {
       		timeout: 1200
       	},
-      	dependencies: [
-      		{ src: 'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js'},
-      		{ src: 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.1/plugin/highlight/highlight.js'},
-      		{ src: 'assets/js/revealjs/plugin/copycode/copycode.js'}
-      	]
+      	plugins: [ RevealHighlight, CopyCode ]
       });
     </script>
   </body>
