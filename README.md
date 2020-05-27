@@ -1,12 +1,14 @@
 # CopyCode
 
-![Screenshot](screenshot.png)
+A simple plugin for [Reveal.js](https://revealjs.com) 4, that automatically shows a 'copy' button in code blocks.
 
-A simple plugin for [Reveal.js](https://revealjs.com) 4, that automatically shows a 'copy' button in code blocks. Because we always copy code during our presentations, dont’t we? 
+[![Screenshot](screenshot.png)](https://martinomagnifico.github.io/reveal.js-copycode/demo.html)
+
+In Reveal.js presentations we can show blocks of code. This plugin for Reveal.js adds a 'copy' button to each of those. 
 
 [Demo](https://martinomagnifico.github.io/reveal.js-copycode/demo.html)
 
-In Reveal.js presentations we can show blocks of code. This plugin for Reveal.js adds a 'copy' button to each of those. It's easy to set up. If your code blocks are set up like this:
+It's easy to set up. If your code blocks are set up like this:
 
 ```html
 <pre>
