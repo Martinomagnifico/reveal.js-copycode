@@ -1,0 +1,28 @@
+.slides {
+  opacity: 0;
+  -webkit-transition: opacity .5s ease;
+  -o-transition: opacity .5s ease;
+  transition: opacity .5s ease; }
+
+.reveal.ready .slides {
+  opacity: 1; }
+
+.backgrounds {
+  background: #1a1626; }
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url("jetbrains-mono/JetBrainsMono-Regular.eot");
+  /* IE9 Compat Modes */
+  src: local("JetBrains Mono"), local("JetBrainsMono-Regular"), url("jetbrains-mono/JetBrainsMono-Regular.eot?#iefix") format("embedded-opentype"), url("jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2"), url("jetbrains-mono/JetBrainsMono-Regular.woff") format("woff"), url("jetbrains-mono/JetBrainsMono-Regular.ttf") format("truetype");
+  /* Safari, Android, iOS */
+  font-style: normal; }
+
+:root {
+  --code-font: 'JetBrains Mono', monospace; }
+
+.reveal pre, .reveal code {
+  font-family: 'JetBrains Mono', monospace; }
+
+.reveal code {
+  line-height: 1.5; }
