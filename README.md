@@ -24,14 +24,30 @@ then install the plugin and it will work automatically.
 
 ## Installation
 
-Copy the copycode folder to the plugins folder of the reveal.js folder, like this: `plugin/copycode`. Now add it to the dependencies of Reveal.js. :
-
-
-### JavaScript
-
 The CopyCode plugin has been rewritten for Reveal.js version 4.
 
 If you want to use CopyCode with an older version of Reveal, use the [1.0.0 version](https://github.com/Martinomagnifico/reveal.js-copycode/releases).
+
+### Regular installation
+
+Copy the copycode folder to the plugins folder of the reveal.js folder, like this: `plugin/copycode`.
+
+
+### npm installation
+
+This plugin is published to, and can be installed from, npm.
+
+```javascript
+npm install reveal.js-copycode
+```
+The CopyCode plugin folder can then be referenced from `node_modules/reveal.js-copycode/plugin/copycode`
+
+
+## Setup
+
+### JavaScript
+
+
 
 CopyCode needs one other (great) script to be able to function: [Clipboard.js](https://clipboardjs.com/) by [Zeno Rocha](https://zenorocha.com). This uses modern techniques to copy text to clipboard.
 
