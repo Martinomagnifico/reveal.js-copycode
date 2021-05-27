@@ -146,4 +146,4 @@ If you like it, please star this repo.
 ## License
 MIT licensed
 
-Copyright (C) 2020 Martijn De Jongh (Martino)
+Copyright (C) 2021 Martijn De Jongh (Martino)
