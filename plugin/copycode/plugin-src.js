@@ -35,7 +35,6 @@ const Plugin = () => {
 
 		let clipboard = new ClipboardJS(".codeblock > button", {
 			target: function (trigger) {
-				//-return trigger.nextElementSibling;
 				return trigger.nextElementSibling.firstChild;
 			}
 		});
