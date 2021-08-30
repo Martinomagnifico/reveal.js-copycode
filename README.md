@@ -23,7 +23,6 @@ It's easy to set up. If your code blocks are set up like this:
 then install the plugin and it will work automatically.
 
 
-
 ## Installation
 
 The CopyCode plugin has been rewritten for Reveal.js version 4.
