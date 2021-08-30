@@ -1,6 +1,6 @@
 # CopyCode
 
-[![Version](https://img.shields.io/npm/v/reveal.js-copycode)](#) [![Version](https://img.shields.io/npms-io/maintenance-score/reveal.js-copycode)](#) [![Downloads](https://img.shields.io/npm/dt/reveal.js-copycode)](https://github.com/Martinomagnifico/reveal.js-copycode/archive/refs/heads/master.zip)
+[![Version](https://img.shields.io/npm/v/reveal.js-copycode)](#) [![Downloads](https://img.shields.io/npm/dt/reveal.js-copycode)](https://github.com/Martinomagnifico/reveal.js-copycode/archive/refs/heads/master.zip)
 
 A simple plugin for [Reveal.js](https://revealjs.com) 4 that automatically shows a 'copy' button in code blocks.
 
