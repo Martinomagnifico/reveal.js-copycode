@@ -38,7 +38,7 @@ Copy the copycode folder to the plugins folder of the reveal.js folder, like thi
 
 This plugin is published to, and can be installed from, npm.
 
-```javascript
+```console
 npm install reveal.js-copycode
 ```
 The CopyCode plugin folder can then be referenced from `node_modules/reveal.js-copycode/plugin/copycode`
