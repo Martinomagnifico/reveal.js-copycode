@@ -18,6 +18,10 @@ const Plugin = () => {
 			wrapper.classList.add("codeblock");
 			codeblock.parentNode.insertBefore(wrapper, codeblock);
 			wrapper.appendChild(codeblock);
+			if (codeblock.classList.contains("fragment")) {
+				wrapper.classList.add("fragment");
+				codeblock.classList.remove("fragment")
+			}
 			let button = document.createElement("button");
 			styleButton(button, codeblock);
 			wrapper.insertBefore(button, codeblock);
@@ -39,7 +43,29 @@ const Plugin = () => {
 			}
 		});
 
+		function plaintextClipboard(copied) {
+			const listener = function (ev) {
+				let text = copied.replace(/^\s*\n/gm, "") 
+				ev.preventDefault();
+				if (ev.clipboardData && ev.clipboardData.getData) {// Standards Compliant FIRST!
+					ev.clipboardData.setData('text/plain', text);
+				}
+				else if (window.clipboardData && window.clipboardData.getData) {// IE
+					window.clipboardData.setData('text/plain', text);
+				}
+			};
+			document.addEventListener('copy', listener);
+			document.execCommand('copy');
+			document.removeEventListener('copy', listener);
+		}
+
+
 		clipboard.on("success", function (e) {
+
+			if (options.plaintextonly == true) {
+				plaintextClipboard(e.text);
+			}
+
 			let button = e.trigger;
 			e.clearSelection();
 
@@ -61,6 +87,7 @@ const Plugin = () => {
 	const init = function (deck) {
 
 		let defaultOptions = {
+			plaintextonly: true,
 			timeout: 1000,
 			copy: "Copy",
 			copied: "Copied!",

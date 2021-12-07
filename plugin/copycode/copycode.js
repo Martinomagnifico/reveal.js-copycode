@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * CopyCode.js for Reveal.js 
- * Version 1.0.2
+ * Version 1.0.3
  * 
  * @license 
  * MIT licensed
@@ -38,6 +38,12 @@
 	      wrapper.classList.add("codeblock");
 	      codeblock.parentNode.insertBefore(wrapper, codeblock);
 	      wrapper.appendChild(codeblock);
+
+	      if (codeblock.classList.contains("fragment")) {
+	        wrapper.classList.add("fragment");
+	        codeblock.classList.remove("fragment");
+	      }
+
 	      var button = document.createElement("button");
 	      styleButton(button, codeblock);
 	      wrapper.insertBefore(button, codeblock);
@@ -57,7 +63,31 @@
 	        return trigger.nextElementSibling.firstChild;
 	      }
 	    });
+
+	    function plaintextClipboard(copied) {
+	      var listener = function listener(ev) {
+	        var text = copied.replace(/^\s*\n/gm, "");
+	        ev.preventDefault();
+
+	        if (ev.clipboardData && ev.clipboardData.getData) {
+	          // Standards Compliant FIRST!
+	          ev.clipboardData.setData('text/plain', text);
+	        } else if (window.clipboardData && window.clipboardData.getData) {
+	          // IE
+	          window.clipboardData.setData('text/plain', text);
+	        }
+	      };
+
+	      document.addEventListener('copy', listener);
+	      document.execCommand('copy');
+	      document.removeEventListener('copy', listener);
+	    }
+
 	    clipboard.on("success", function (e) {
+	      if (options.plaintextonly == true) {
+	        plaintextClipboard(e.text);
+	      }
+
 	      var button = e.trigger;
 	      e.clearSelection();
 	      button.setAttribute("data-text-original", button.innerHTML);
@@ -76,6 +106,7 @@
 
 	  var init = function init(deck) {
 	    var defaultOptions = {
+	      plaintextonly: true,
 	      timeout: 1000,
 	      copy: "Copy",
 	      copied: "Copied!",

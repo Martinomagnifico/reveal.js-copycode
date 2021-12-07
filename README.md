@@ -2,9 +2,9 @@
 
 [![Version](https://img.shields.io/npm/v/reveal.js-copycode)](#) [![Downloads](https://img.shields.io/npm/dt/reveal.js-copycode)](https://github.com/Martinomagnifico/reveal.js-copycode/archive/refs/heads/master.zip)
 
-A simple plugin for [Reveal.js](https://revealjs.com) 4 that automatically shows a 'copy' button in code blocks.
+A simple plugin for [Reveal.js](https://revealjs.com) that automatically shows a 'copy' button in code blocks.
 
-[![Screenshot](screenshot.png)](https://martinomagnifico.github.io/reveal.js-copycode/demo.html)
+[![Screenshot](https://martinomagnifico.github.io/reveal.js-copycode/screenshot.png)](https://martinomagnifico.github.io/reveal.js-copycode/demo.html)
 
 In Reveal.js presentations we can show blocks of code. This plugin for Reveal.js adds a 'copy' button to each of those. 
 
@@ -83,6 +83,7 @@ There are a few options that you can change from the Reveal.js options. The valu
 Reveal.initialize({
 	// ...
 	copycode: {
+		plaintextonly: true,
 		copy: "Copy",
 		copied: "Copied!",
 		timeout: 1000,
@@ -95,6 +96,7 @@ Reveal.initialize({
 });
 ```
 
+* **`plaintextonly`**: Set this to false to allow copying of rich text and styles.
 * **`copy`**: The text for each copy button.
 * **`copied`**: The text for each copy button when the copy action is successful.
 * **`timeout`**: The time in milliseconds for the "Copied!"-state to revert back to "Copy".
