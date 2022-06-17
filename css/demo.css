@@ -1,38 +1,44 @@
 .slides {
   opacity: 0;
-  -webkit-transition: opacity .5s ease;
-  -o-transition: opacity .5s ease;
-  transition: opacity .5s ease; }
+  -webkit-transition: opacity 0.5s ease;
+  -o-transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease;
+}
 
 .reveal.ready .slides {
-  opacity: 1; }
+  opacity: 1;
+}
 
 .backgrounds {
-  background: #1a1626; }
+  background: #1a1626;
+}
 
 @font-face {
-  font-family: 'JetBrains Mono';
-  src: url("jetbrains-mono/JetBrainsMono-Regular.eot");
-  /* IE9 Compat Modes */
-  src: local("JetBrains Mono"), local("JetBrainsMono-Regular"), url("jetbrains-mono/JetBrainsMono-Regular.eot?#iefix") format("embedded-opentype"), url("jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2"), url("jetbrains-mono/JetBrainsMono-Regular.woff") format("woff"), url("jetbrains-mono/JetBrainsMono-Regular.ttf") format("truetype");
-  /* Safari, Android, iOS */
-  font-style: normal; }
-
+  font-family: "JetBrains Mono";
+  src: url("jetbrains-mono/JetBrainsMono-Regular.eot"); /* IE9 Compat Modes */
+  src: local("JetBrains Mono"), local("JetBrainsMono-Regular"), url("jetbrains-mono/JetBrainsMono-Regular.eot?#iefix") format("embedded-opentype"), url("jetbrains-mono/JetBrainsMono-Regular.woff2") format("woff2"), url("jetbrains-mono/JetBrainsMono-Regular.woff") format("woff"), url("jetbrains-mono/JetBrainsMono-Regular.ttf") format("truetype"); /* Safari, Android, iOS */
+  font-style: normal;
+}
 :root {
-  --code-font: 'JetBrains Mono', monospace; }
+  --code-font: "JetBrains Mono", monospace;
+}
 
 .reveal pre, .reveal code {
-  font-family: 'JetBrains Mono', monospace; }
+  font-family: "JetBrains Mono", monospace;
+}
 
 .reveal code {
-  line-height: 1.5; }
+  line-height: 1.5;
+}
 
 a.github-corner {
   position: absolute;
   z-index: 1;
   width: clamp(50px, 8vmax, 80px);
   line-height: 0;
-  color: rgba(255, 255, 255, 0.5); }
+  color: rgba(255, 255, 255, 0.5);
+}
 
 a.github-corner:hover {
-  color: white; }
+  color: white;
+}

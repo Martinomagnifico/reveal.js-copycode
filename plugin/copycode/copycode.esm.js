@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * CopyCode.js for Reveal.js 
- * Version 1.0.3
+ * Version 1.0.4
  * 
  * @license 
  * MIT licensed
@@ -15,6 +15,38 @@
 
 
 var Plugin = function Plugin() {
+  function loadResource(url, type, callback) {
+    var head = document.querySelector('head');
+    var resource;
+
+    if (type === 'script') {
+      resource = document.createElement('script');
+      resource.type = 'text/javascript';
+      resource.src = url;
+    } else if (type === 'stylesheet') {
+      resource = document.createElement('link');
+      resource.rel = 'stylesheet';
+      resource.href = url;
+    }
+
+    var finish = function finish() {
+      if (typeof callback === 'function') {
+        callback.call();
+        callback = null;
+      }
+    };
+
+    resource.onload = finish;
+
+    resource.onreadystatechange = function () {
+      if (this.readyState === 'loaded') {
+        finish();
+      }
+    };
+
+    head.appendChild(resource);
+  }
+
   var getCodeBlocks = function getCodeBlocks(codeblocks, options) {
     var styleButton = function styleButton(button, codeblock) {
       var codeblockData = codeblock.dataset;
@@ -23,8 +55,10 @@ var Plugin = function Plugin() {
       ["data-cc-copy", "data-cc-copied"].forEach(function (attribute) {
         return codeblock.removeAttribute(attribute);
       });
-      button.style.backgroundColor = options.copybg;
-      button.style.color = options.copycolor;
+      button.style.setProperty('--copy-bg', options.copybg);
+      button.style.setProperty('--copy-color', options.copycolor);
+      button.style.setProperty('--copied-bg', options.copiedbg);
+      button.style.setProperty('--copied-color', options.copiedcolor);
     };
 
     var buildStructure = function buildStructure(codeblock) {
@@ -64,10 +98,8 @@ var Plugin = function Plugin() {
         ev.preventDefault();
 
         if (ev.clipboardData && ev.clipboardData.getData) {
-          // Standards Compliant FIRST!
           ev.clipboardData.setData('text/plain', text);
         } else if (window.clipboardData && window.clipboardData.getData) {
-          // IE
           window.clipboardData.setData('text/plain', text);
         }
       };
@@ -86,12 +118,8 @@ var Plugin = function Plugin() {
       e.clearSelection();
       button.setAttribute("data-text-original", button.innerHTML);
       button.innerHTML = button.getAttribute("data-cc-copied");
-      button.style.backgroundColor = options.copiedbg;
-      button.style.color = options.copiedcolor;
       button.setAttribute("disabled", true);
       setTimeout(function () {
-        button.style.backgroundColor = options.copybg;
-        button.style.color = options.copycolor;
         button.innerHTML = button.getAttribute("data-text-original");
         button.removeAttribute("disabled");
       }, options.timeout);
@@ -99,6 +127,7 @@ var Plugin = function Plugin() {
   };
 
   var init = function init(deck) {
+    var es5Filename = "copycode.js";
     var defaultOptions = {
       plaintextonly: true,
       timeout: 1000,
@@ -107,7 +136,9 @@ var Plugin = function Plugin() {
       copybg: "orange",
       copiedbg: "green",
       copycolor: "black",
-      copiedcolor: "white"
+      copiedcolor: "white",
+      csspath: "",
+      clipboardjspath: ""
     };
 
     var defaults = function defaults(options, defaultOptions) {
@@ -121,15 +152,33 @@ var Plugin = function Plugin() {
     var options = deck.getConfig().copycode || {};
     defaults(options, defaultOptions);
 
-    if (typeof ClipboardJS === "function") {
-      var codeblocks = deck.getRevealElement().querySelectorAll("pre");
+    function pluginPath() {
+      var path;
+      var pluginScript = document.querySelector("script[src$=\"".concat(es5Filename, "\"]"));
 
-      if (codeblocks.length > 0) {
-        getCodeBlocks(codeblocks, options);
+      if (pluginScript) {
+        path = pluginScript.getAttribute("src").slice(0, -1 * es5Filename.length);
+      } else {
+        path = import.meta.url.slice(0, import.meta.url.lastIndexOf('/') + 1);
       }
-    } else {
-      console.log("Clipboard.js did not load");
+
+      return path;
     }
+
+    var ClipboardJSPath = options.clipboardjspath != "" ? options.clipboardjspath : "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js";
+    var CopyCodeStylePath = options.csspath ? options.csspath : "".concat(pluginPath(), "copycode.css") || 'plugin/copycode/copycode.css';
+    loadResource(CopyCodeStylePath, 'stylesheet', function () {});
+    loadResource(ClipboardJSPath, 'script', function () {
+      if (typeof ClipboardJS === "function") {
+        var codeblocks = deck.getRevealElement().querySelectorAll("pre");
+
+        if (codeblocks.length > 0) {
+          getCodeBlocks(codeblocks, options);
+        }
+      } else {
+        console.log("Clipboard.js did not load");
+      }
+    });
   };
 
   return {
@@ -138,4 +187,4 @@ var Plugin = function Plugin() {
   };
 };
 
-export default Plugin;
+export { Plugin as default };

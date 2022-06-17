@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="../dist/theme/black.css">
     <link rel="stylesheet" href="plugin/highlight/monokai.css">
     <link rel="stylesheet" href="css/demo.css">
-    <!-- Styles for CopyCode button-->
-    <link rel="stylesheet" href="plugin/copycode/copycode.css">
 </head>
 
 <body>
@@ -77,10 +75,13 @@ Reveal.initialize({
             </section>
             <section>
                 <h4>Manual styling</h4>
-                <p>Just edit the provided stylesheet.</p>
-                <pre style="white-space: pre-wrap"><code class="hljs html" data-line-numbers>&hellip;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;assets/js/revealjs/plugin/copycode/copycode.css&quot;&gt;
-&hellip;</code></pre>
+                <p>Just edit the provided stylesheet or use your own stylesheet like this:</p>
+                <pre><code class="hljs javascript" data-line-numbers>&hellip;
+Reveal.initialize({
+    copycode: {
+        csspath: &quot;mycustomstyle.css&quot;
+    },
+    plugins: [ &hellip;</code></pre><small>Use this if you really want to change things that you can't override from the Reveal.js config, like the position, the padding and so on.</small>
             </section>
             <section>
                 <h4>Thanks</h4>
@@ -92,7 +93,6 @@ Reveal.initialize({
             </section>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.8/clipboard.min.js"></script>
     <script src="../dist/reveal.js"></script>
     <script src="plugin/copycode/copycode.js"></script>
     <script src="plugin/highlight/highlight.js"></script>

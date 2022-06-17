@@ -1,16 +1,16 @@
 {
     "name": "reveal.js-copycode",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "A simple plugin for Reveal.js 4, that automatically shows a copy button in code blocks",
-    "keywords": "reveal, reveal.js, reveal-plugin, plugin, code editor",
+    "keywords": "reveal, reveal.js, reveal-plugin, plugin, code editor, clipboard.js",
     "homepage": "https://github.com/Martinomagnifico/reveal.js-copycode",
     "repository": {
         "type": "git",
         "url": "https://github.com/Martinomagnifico/reveal.js-copycode.git"
     },
+    "author": "Martijn De Jongh",
+    "license": "MIT, Copyright (C) 2022 Martijn De Jongh",
     "peerDependencies": {
         "reveal.js": "^4.2"
-    },
-    "author": "Martijn De Jongh",
-    "license": "MIT, Copyright (C) 2021 Martijn De Jongh"
+    }
 }

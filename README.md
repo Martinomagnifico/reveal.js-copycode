@@ -25,10 +25,6 @@ then install the plugin and it will work automatically.
 
 ## Installation
 
-The CopyCode plugin has been rewritten for Reveal.js version 4.
-
-If you want to use CopyCode with an older version of Reveal, use the [1.0.0 version](https://github.com/Martinomagnifico/reveal.js-copycode/releases).
-
 ### Regular installation
 
 Copy the copycode folder to the plugins folder of the reveal.js folder, like this: `plugin/copycode`.
@@ -48,9 +44,7 @@ The CopyCode plugin folder can then be referenced from `node_modules/reveal.js-c
 
 ### JavaScript
 
-
-
-CopyCode needs one other (great) script to be able to function: [Clipboard.js](https://clipboardjs.com/) by [Zeno Rocha](https://zenorocha.com). This uses modern techniques to copy text to clipboard.
+CopyCode automatically inserts one other (great) script to be able to function: [Clipboard.js](https://clipboardjs.com/) by [Zeno Rocha](https://zenorocha.com). This uses modern techniques to copy text to clipboard.
 
 ```html
 <script src="dist/reveal.js">
@@ -67,12 +61,9 @@ CopyCode needs one other (great) script to be able to function: [Clipboard.js](h
 
 ### Styling
 
-Now add a link in your HTML to the stylesheet. 
+Since version 1.0.4, the styling of CopyCode is automatically inserted from the included CSS styles, either loaded through NPM or from the plugin folder.
 
-```html
-<link rel="stylesheet" href="plugin/copycode/copycode.css">
-```
-
+If you want to change the CopyCode style, you do a lot of that via the Reveal.js options. Or you can simply make your own style and use that stylesheet instead. Linking to your custom styles can be managed through the `csspath` option of CopyCode.
 
 
 ## Configuration
@@ -90,7 +81,9 @@ Reveal.initialize({
 		copybg: "orange",
 		copiedbg: "green",
 		copycolor: "black",
-		copiedcolor: "white"
+		copiedcolor: "white",
+		csspath: "",
+		clipboardjspath: ""
 	},
 	plugins: [ CopyCode ]
 });
@@ -104,7 +97,8 @@ Reveal.initialize({
 * **`copiedbg`**: The background color in the Copied state.
 * **`copycolor`**: The text color.
 * **`copiedcolor`**: The text color in the Copied state.
-
+* **`csspath`**: CopyCode will automatically load the styling. If you want to customise the styling, you can link to your own CSS file here. 
+* **`clipboardjspath`**: This is the path to ClipboardJS. When nothing is filled in here, it will automatically load from a CDN. 
 
 
 ## Customize it per element
@@ -149,4 +143,4 @@ If you like it, please star this repo.
 ## License
 MIT licensed
 
-Copyright (C) 2021 Martijn De Jongh (Martino)
+Copyright (C) 2022 Martijn De Jongh (Martino)
