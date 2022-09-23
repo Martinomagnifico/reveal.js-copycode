@@ -47,8 +47,8 @@ The CopyCode plugin folder can then be referenced from `node_modules/reveal.js-c
 CopyCode automatically inserts one other (great) script to be able to function: [Clipboard.js](https://clipboardjs.com/) by [Zeno Rocha](https://zenorocha.com). This uses modern techniques to copy text to clipboard.
 
 ```html
-<script src="dist/reveal.js">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js">
+<script src="dist/reveal.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 <script src="plugin/copycode/copycode.js"></script>
 <script>
 	Reveal.initialize({
