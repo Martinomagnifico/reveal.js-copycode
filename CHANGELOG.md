@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0] - 2023-05-21
+
+### Added
+- Added (SVG) icon option.
+- Added border option.
+- Added tooltip option.
+- Added MarkDown example.
+- Added Quarto compatibility.
+
+### Changed
+- Fixed a bug where YAML codeblocks would lose their indents.
+- Fixed a bug where Clipboard.js could load multiple times.
+- Reordered options into objects, while keeping backwards compatible.
+
+
 ## [1.0.4] - 2022-06-17
 - Started keeping the changelog.
 
