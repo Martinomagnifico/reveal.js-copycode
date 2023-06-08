@@ -1,10 +1,18 @@
 # Changelog
 
+## [1.1.1] - 2023-06-xx
+
+### Changed
+- Fixed a bug where plaintext codeblocks indents got removed.
+
+
 ## [1.1.0] - 2023-05-21
 
 ### Added
 - Added (SVG) icon option.
 - Added border option.
+- Added offset option.
+- Added scale option.
 - Added tooltip option.
 - Added MarkDown example.
 - Added Quarto compatibility.

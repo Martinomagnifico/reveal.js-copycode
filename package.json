@@ -1,6 +1,6 @@
 {
     "name": "reveal.js-copycode",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "main": "plugin/copycode/copycode.js",
     "module": "plugin/copycode/copycode.esm.js",
     "description": "A simple plugin for Reveal.js 4, that automatically shows a copy button in code blocks",

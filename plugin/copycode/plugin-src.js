@@ -163,20 +163,19 @@ const Plugin = () => {
 
 		preblocks.forEach(preblock => buildStructure(preblock) );
 
-
 		let clipboard = options.plaintextonly == true ? 
-			new ClipboardJS(".codeblock > button", {
-				text: function(trigger) { 
-					return trigger.nextElementSibling.firstChild.textContent.replace(/^\s*\n/gm, "");
-				}}) : 
-			new ClipboardJS(".codeblock > button", {
-				target({nextElementSibling}) {
-					return nextElementSibling.firstChild.replace(/^\s*\n/gm, "") ;
-				}}) ;
+		new ClipboardJS(".codeblock > button", {
+			text: function(trigger) { 
+				return trigger.nextElementSibling.firstChild.innerText.replace(/^\s*\n/gm, "");
+			}}) : 
+		new ClipboardJS(".codeblock > button", {
+			target({nextElementSibling}) {
+				return nextElementSibling.firstChild;
+			}}) ;
 
 
 		clipboard.on("success", e => {
-		
+
 			let button = e.trigger;
 			e.clearSelection();
 		

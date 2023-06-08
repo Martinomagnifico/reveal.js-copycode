@@ -4,7 +4,7 @@
  * https://github.com/Martinomagnifico
  *
  * CopyCode.js for Reveal.js 
- * Version 1.1.0
+ * Version 1.1.1
  * 
  * @license 
  * MIT licensed
@@ -179,14 +179,14 @@ const Plugin = () => {
     preblocks.forEach(preblock => buildStructure(preblock));
     let clipboard = options.plaintextonly == true ? new ClipboardJS(".codeblock > button", {
       text: function (trigger) {
-        return trigger.nextElementSibling.firstChild.textContent.replace(/^\s*\n/gm, "");
+        return trigger.nextElementSibling.firstChild.innerText.replace(/^\s*\n/gm, "");
       }
     }) : new ClipboardJS(".codeblock > button", {
       target(_ref) {
         let {
           nextElementSibling
         } = _ref;
-        return nextElementSibling.firstChild.replace(/^\s*\n/gm, "");
+        return nextElementSibling.firstChild;
       }
 
     });
