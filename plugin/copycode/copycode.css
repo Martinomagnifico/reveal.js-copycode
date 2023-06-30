@@ -34,11 +34,6 @@
 .sourceCode .codeblock {
   margin: 0;
 }
-.codeblock pre {
-  margin: 0;
-  width: 100%;
-  font-size: 1.5rem;
-}
 .codeblock pre .code-copy-button {
   display: none;
 }
