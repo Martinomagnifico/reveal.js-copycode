@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.1.3] - 2023-11-01
+
+### Changed
+- Fixed copy of empty lines in code blocks.
+
 ## [1.1.2] - 2023-06-30
 
 ### Changed

@@ -1,6 +1,6 @@
 :root {
   --r-heading-text-transform: none ;
-  --r-background-color: #1a1626;
+  --r-background-color: #051525;
   --r-main-font-size: 40px;
 }
 
@@ -16,11 +16,11 @@
 }
 
 .backgrounds {
-  background: #1a1626;
+  background: var(--r-background-color);
 }
 
 .reveal.overview section {
-  background: #1a1626;
+  background: var(--r-background-color);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -126,8 +126,8 @@ p a[href*=html], p a[href*=http] {
 }
 
 a.github-corner {
-  position: absolute;
-  z-index: 1;
+  position: fixed;
+  z-index: 2;
   width: clamp(50px, 8vmax, 80px);
   line-height: 0;
   color: rgba(255, 255, 255, 0.5);
@@ -209,15 +209,4 @@ em[class*=animate] {
   display: inline-block;
   width: 1.2em;
   text-align: right;
-}
-
-.testarea {
-  z-index: 999;
-  position: absolute;
-}
-
-textarea#test {
-  margin: 0;
-  min-height: 100px;
-  min-width: 400px;
 }
