@@ -4,12 +4,12 @@
 
 A simple plugin for [Reveal.js](https://revealjs.com) that automatically shows a 'copy' button in code blocks.
 
-[![Screenshot](https://martinomagnifico.github.io/reveal.js-copycode/screenshot.png)](https://martinomagnifico.github.io/reveal.js-copycode/demo.html)
+[![Screenshot](https://martinomagnifico.github.io/reveal.js-copycode/screenshot.png)](https://martinomagnifico.github.io/reveal.js-copycode/demo/demo.html)
 
 In Reveal.js presentations we can show blocks of code. This plugin for Reveal.js adds a 'copy' button to each of those. 
 
-* [Demo](https://martinomagnifico.github.io/reveal.js-copycode/demo.html)
-* [Markdown demo](https://martinomagnifico.github.io/reveal.js-copycode/demo-markdown.html)
+* [Demo](https://martinomagnifico.github.io/reveal.js-copycode/demo/demo.html)
+* [Markdown demo](https://martinomagnifico.github.io/reveal.js-copycode/demo/demo-markdown.html)
 
 It's easy to set up. If your code blocks are set up like this:
 
@@ -39,7 +39,7 @@ There are really only three steps:
 
 ### Regular installation
 
-Copy the copycode folder to the plugins folder of the reveal.js folder, like this: `plugin/copycode`.
+Copy the plugin > copycode folder to the plugins folder of the reveal.js folder, like this: `plugin/copycode`.
 
 
 ### npm installation
@@ -49,7 +49,7 @@ This plugin is published to, and can be installed from, npm.
 ```console
 npm install reveal.js-copycode
 ```
-The CopyCode plugin folder can then be referenced from `node_modules/reveal.js-copycode/plugin/copycode`
+The CopyCode plugin folder can then be referenced from `node_modules/reveal.js-copycode/plugin/copycode`.
 
 
 ## Adding CopyCode to your presentation
@@ -98,7 +98,7 @@ If you want to change the CopyCode style, you do a lot of that via the Reveal.js
 
 ## Now change it
 
-The following per-element changes use data-attributes. See the [markdown demo](https://martinomagnifico.github.io/reveal.js-copycode/demo-markdown.html) for the instructions to add these data-attributes in MarkDown.
+The following per-element changes use data-attributes. See the [markdown demo](https://martinomagnifico.github.io/reveal.js-copycode/demo/demo-markdown.html) for the instructions to add these data-attributes in MarkDown.
 
 
 #### Change the visibility per element: 

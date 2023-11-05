@@ -1,0 +1,165 @@
+:root {
+    --cc-copy-bg: orange;
+    --cc-copied-bg: green;
+    --cc-copy-color: black;
+    --cc-copied-color: white;
+    --cc-scale: 1;
+    --cc-offset: 0;
+    --cc-radius: 0;
+    --cc-borderwidth: 2;
+    --cc-copyborder: 0;
+    --cc-copiedborder: 0;
+}
+
+.reveal pre,
+.codeblock {
+    width: 100%;
+}
+
+.codeblock {
+    margin: var(--r-block-margin) auto;
+    position: relative;
+
+    .sourceCode & {
+        margin: 0;
+    }
+
+    pre {
+        .code-copy-button {
+            display: none;
+        }
+    }
+
+    >button {
+        opacity: 0.5;
+        z-index: 1;
+        display: flex;
+        position: absolute;
+        right: 0;
+        right: calc(var(--cc-offset, 0) * 1em);
+        top: 0;
+        top: calc(var(--cc-offset, 0) * 1em);
+        background-color: var(--cc-copy-bg, orange);
+        color: var(--cc-copy-color, black);
+        border: var(--cc-copyborder, 0);
+        margin: 0;
+        padding: .2em .5em;
+        font-family: inherit;
+        font-size: 1.5rem;
+        border-radius: 0;
+        border-radius: calc(var(--cc-radius, 0) * 1em);
+        font-size: calc(var(--cc-scale, 1) * 1.5rem);
+        line-height: 1.25em;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        transform: translate3d(0, 0, 0);
+        transition: background-color 0.25s ease-in-out, opacity .25s ease-in-out;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        cursor: pointer;
+
+        svg {
+            fill: var(--cc-copy-color);
+            height: 1.25em;
+            width: 0.8em;
+
+            &+span {
+                margin-left: 0.25em;
+            }
+
+            &:last-of-type {
+                display: none;
+            }
+        }
+
+        &[data-cc-display="icons"] {
+
+            span {
+                line-height: 1.25em;
+                transform: translate3d(-100%, -50%, 1px);
+                pointer-events: none;
+                opacity: 0;
+                transition: all .15s ease-in-out;
+                font-size: 1.2rem;
+                position: absolute;
+                background: black;
+                padding: 0.25em 0.5em;
+                left: 0;
+                top: 50%;
+                border-radius: 0.2em;
+                color: white;
+                margin-left: -0.5em;
+
+                &::after {
+                    content: '';
+                    display: block;
+                    width: .66em;
+                    height: .66em;
+                    background: black;
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translate3d(45%, -50%, -1px) rotate(45deg);
+                }
+            }
+        }
+
+        &[data-cc="hover"] {
+            opacity: 0;
+
+            @media (hover: none) {
+                opacity: 1;
+            }
+        }
+
+        &[data-cc="false"] {
+            display: none
+        }
+
+        &[disabled] {
+            opacity: 1;
+            background-color: var(--cc-copied-bg, green);
+            color: var(--cc-copied-color, white);
+            border: var(--cc-copiedborder, 0);
+
+            svg {
+                fill: var(--cc-copied-color, white);
+
+                &:first-of-type {
+                    display: none
+                }
+
+                &:last-of-type {
+                    display: inline-block
+                }
+            }
+
+            cursor: default;
+
+            &[data-cc-display="icons"] {
+                span {
+                    opacity: 1;
+                }
+            }
+        }
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    &:hover>button[data-cc="hover"] {
+        opacity: 0.5;
+    }
+}
+
+.codeblock>button:hover,
+.codeblock>button[data-cc="hover"]:hover,
+.codeblock>button[disabled],
+.codeblock:hover>button[disabled],
+pre>button:hover {
+    opacity: 1;
+}

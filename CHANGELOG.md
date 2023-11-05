@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4] - 2023-11-05
+
+### Changed
+- Rewrote plugin so that the demo can be easily started from the command line
+- Removed JetBrains Mono font from demo
+
+
 ## [1.1.3] - 2023-11-01
 
 ### Changed
