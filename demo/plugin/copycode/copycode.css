@@ -2,7 +2,7 @@
 /*****************************************************************
  *
  * CopyCode for Reveal.js 
- * Version 1.1.4
+ * Version 1.1.5
  * 
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/martinomagnifico
@@ -42,11 +42,15 @@
 .codeblock pre .code-copy-button {
   display: none;
 }
+.codeblock code.hljs {
+  min-height: 1.2em;
+}
 .codeblock > button {
   opacity: 0.5;
   z-index: 1;
   display: flex;
   position: absolute;
+  max-height: 100%;
   right: 0;
   right: calc(var(--cc-offset, 0) * 1em);
   top: 0;

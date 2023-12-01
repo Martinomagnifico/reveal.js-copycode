@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5] - 2023-11-17
+
+### Changed
+- Fixed an error where code could not be copied if it was preceded by a space
+- Empty code blocks will now *not* get a copy button
+
+
 ## [1.1.4] - 2023-11-05
 
 ### Changed

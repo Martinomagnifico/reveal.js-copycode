@@ -270,7 +270,7 @@ http.createServer(function (request, response) {
       const pluginCheck = (plugs) => plugs.reduce((a, p) => typeof window[p] === "function" ? (a.push(window[p]), a) : (console.warn(`Plugin "${p}" does not exist.`), a), []);
       
       let revealdeck = new Reveal(deck);
-      	revealdeck.initialize({
+      revealdeck.initialize({
       	history: true,
       	overview: false,
       	center: true,

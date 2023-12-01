@@ -53,7 +53,11 @@ export const buildStructure = (preblock, options) => {
 		}
 	} );
 
-	styleButton(button, options);
-	// Insert the button
-	codeblock.insertBefore(button, preblock);
+	let code = preblock.querySelectorAll('code')[0];
+	if (code && code.innerText) {
+		// Style the button
+		styleButton(button, options);
+		// Insert the button
+		codeblock.insertBefore(button, preblock);
+	}
 }

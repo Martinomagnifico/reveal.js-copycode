@@ -31,7 +31,9 @@ const sourcefolder = "./src";
 
 let demofolder = "./demo";
 let distfolder = "./plugin";
-let pluginfolder = isProduction ? `${distfolder}/${pkg.functionname.toLowerCase()}` : `${demofolder}/plugin/${pkg.functionname.toLowerCase()}`;
+let distjsfolder = `${distfolder}/${pkg.functionname.toLowerCase()}`;
+let demojsfolder = `${demofolder}/plugin/${pkg.functionname.toLowerCase()}`;
+let pluginfolder = isProduction ? distjsfolder : demojsfolder;
 
 /************
  VIEW LOCALS
@@ -126,7 +128,7 @@ const copydeps = () => {
 
 let cache = {};
 
-const pluginjs = () => {
+const distjs = () => {
 	return rollup({
 		cache: cache.umd,
 		input: `${sourcefolder}/plugin/js/plugin.js`,
@@ -140,21 +142,49 @@ const pluginjs = () => {
 		cache.umd = bundle.cache;
 		bundle.write({
 			name: pkg.functionname,
-			file: `${pluginfolder}/${pkg.functionname.toLowerCase()}.js`,
+			file: `${distjsfolder}/${pkg.functionname.toLowerCase()}.js`,
 			format: 'umd',
 			banner: banner,
-			sourcemap: !isProduction
+			sourcemap: false
 		})
 		bundle.write({
 			name: pkg.functionname,
-			file: `${pluginfolder}/${pkg.functionname.toLowerCase()}.esm.js`,
+			file: `${distjsfolder}/${pkg.functionname.toLowerCase()}.esm.js`,
 			format: 'es',
 			banner: banner,
-			sourcemap: !isProduction
+			sourcemap: false
 		});
 	});
 }
 
+
+const demojs = () => {
+	return rollup({
+		cache: cache.umd,
+		input: `${sourcefolder}/plugin/js/plugin.js`,
+		plugins: [
+			babel( babelConfig ),
+			resolve(),
+			commonjs()
+		]
+	}).then( bundle => {
+		cache.umd = bundle.cache;
+		bundle.write({
+			name: pkg.functionname,
+			file: `${demojsfolder}/${pkg.functionname.toLowerCase()}.js`,
+			format: 'umd',
+			banner: banner,
+			sourcemap: true
+		})
+		bundle.write({
+			name: pkg.functionname,
+			file: `${demojsfolder}/${pkg.functionname.toLowerCase()}.esm.js`,
+			format: 'es',
+			banner: banner,
+			sourcemap: true
+		});
+	});
+}
 const pluginstyles = () => {
 	return (
 		src(`${sourcefolder}/plugin/css/plugin.scss`)
@@ -234,13 +264,13 @@ const watchtask = (done) => {
 	watch(`${sourcefolder}/demo/css/**/*.scss`, demostyles);
 	watch(`${sourcefolder}/demo/**/*.md`, demomd);
 	watch(`${sourcefolder}/plugin/css/*.scss`, pluginstyles);
-	watch(`${sourcefolder}/plugin/js/**/*.js`, pluginjs);
+	watch(`${sourcefolder}/plugin/js/**/*.js`, demojs);
 	watch(`${sourcefolder}/**/*.{gif,jpg,png,svg}`, demoimg);
 	done();
 }
 
-const devTask = parallel(copydeps, demofonts, demoimg, demostyles, demomd, pluginstyles, pluginjs, demoviews);
-const buildTask = parallel(pluginstyles, pluginjs);
+const devTask = parallel(copydeps, demofonts, demoimg, demostyles, demomd, pluginstyles, demojs, demoviews);
+const buildTask = parallel(pluginstyles, distjs);
 
 exports.demo = series(cleandev, devTask, serve, watchtask);
 exports.build = series(cleandist, buildTask);

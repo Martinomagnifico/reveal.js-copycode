@@ -3,11 +3,12 @@ export const doClipboard = (options) => {
 	let clipboard = options.plaintextonly == true ? 
 	new ClipboardJS(".codeblock > button", {
 		text: function(trigger) { 
-			return trigger.nextElementSibling.firstChild.innerText.replace(/^\s+|\s+$/g, "");
+			let code = trigger.nextElementSibling.querySelectorAll('code')[0];
+			return code.innerText.replace(/^\s+|\s+$/g, "")
 		}}) : 
 	new ClipboardJS(".codeblock > button", {
 		target({nextElementSibling}) {
-			return nextElementSibling.firstChild;
+			return nextElementSibling.nextElementSibling.querySelectorAll('code')[0]
 		}}) ;
 
 

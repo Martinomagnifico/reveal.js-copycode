@@ -30,11 +30,16 @@
         }
     }
 
-    >button {
+    code.hljs {
+        min-height: 1.20em;
+    }
+
+    > button {
         opacity: 0.5;
         z-index: 1;
         display: flex;
         position: absolute;
+        max-height: 100%;
         right: 0;
         right: calc(var(--cc-offset, 0) * 1em);
         top: 0;
