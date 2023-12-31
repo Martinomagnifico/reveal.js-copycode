@@ -1,11 +1,5 @@
 # Changelog
 
-## [1.1.6] - 2023-12-31
-
-### Changed
-- Target only pre's that directly have a code child
-
-
 ## [1.1.5] - 2023-12-01
 
 ### Changed
