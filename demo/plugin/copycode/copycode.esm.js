@@ -2,7 +2,7 @@
 /*****************************************************************
  *
  * CopyCode for Reveal.js 
- * Version 1.1.5
+ * Version 1.1.6
  * 
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/martinomagnifico
