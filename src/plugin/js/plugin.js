@@ -18,9 +18,16 @@ const Plugin = () => {
 		let thePath = pluginPath(es5Filename);
 		let pluginBaseName = es5Filename.replace(/\.[^/.]+$/, "");
 
-		let ClipboardJSPath = options.clipboardjspath != "" ? options.clipboardjspath : null || "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"
-		let CopyCodeStylePath = options.csspath ? options.csspath : null || `${thePath}${pluginBaseName}.css` || `plugin/${pluginBaseName}/${pluginBaseName}.css`
-		let preblocks = deck.getRevealElement().querySelectorAll("pre");
+		let ClipboardJSPath = options.clipboardjspath != "" ? options.clipboardjspath : null || "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js";
+		let CopyCodeStylePath = options.csspath ? options.csspath : null || `${thePath}${pluginBaseName}.css` || `plugin/${pluginBaseName}/${pluginBaseName}.css`;
+
+		let preblocks = [];
+		let codes = Array.from(deck.getRevealElement().querySelectorAll("code"));
+		codes.forEach((code) => {
+			if (code.parentNode.tagName === "PRE") {
+				preblocks.push(code.parentNode);
+			}
+		});
 
 		if (typeof ClipboardJS != "function") {
 			loadResource(ClipboardJSPath, 'script', () => {

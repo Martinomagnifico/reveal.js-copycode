@@ -266,7 +266,13 @@
 	    let pluginBaseName = es5Filename.replace(/\.[^/.]+$/, "");
 	    let ClipboardJSPath = options.clipboardjspath != "" ? options.clipboardjspath : "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js";
 	    let CopyCodeStylePath = options.csspath ? options.csspath : `${thePath}${pluginBaseName}.css` || `plugin/${pluginBaseName}/${pluginBaseName}.css`;
-	    let preblocks = deck.getRevealElement().querySelectorAll("pre");
+	    let preblocks = [];
+	    let codes = Array.from(deck.getRevealElement().querySelectorAll("code"));
+	    codes.forEach(code => {
+	      if (code.parentNode.tagName === "PRE") {
+	        preblocks.push(code.parentNode);
+	      }
+	    });
 	    if (typeof ClipboardJS != "function") {
 	      loadResource(ClipboardJSPath, 'script', () => {
 	        if (typeof ClipboardJS === "function") {

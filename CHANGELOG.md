@@ -1,6 +1,12 @@
 # Changelog
 
-## [1.1.5] - 2023-11-17
+## [1.1.6] - 2023-12-31
+
+### Changed
+- Target only pre's that directly have a code child
+
+
+## [1.1.5] - 2023-12-01
 
 ### Changed
 - Fixed an error where code could not be copied if it was preceded by a space
