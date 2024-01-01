@@ -64,7 +64,7 @@ const banner = `
  * @license 
  * MIT licensed
  * 
- * Copyright (C) 2023 ${pkg.author.name}
+ * Copyright (C) 2024 ${pkg.author.name}
  *
  ******************************************************************/
 `
@@ -140,6 +140,7 @@ const distjs = () => {
 		]
 	}).then( bundle => {
 		cache.umd = bundle.cache;
+		console.log(`Writing dist JS files to ${distjsfolder}`);
 		bundle.write({
 			name: pkg.functionname,
 			file: `${distjsfolder}/${pkg.functionname.toLowerCase()}.js`,

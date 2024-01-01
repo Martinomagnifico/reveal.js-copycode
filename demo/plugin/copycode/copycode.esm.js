@@ -2,7 +2,7 @@
 /*****************************************************************
  *
  * CopyCode for Reveal.js 
- * Version 1.1.6
+ * Version 1.1.7
  * 
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/martinomagnifico
@@ -10,7 +10,7 @@
  * @license 
  * MIT licensed
  * 
- * Copyright (C) 2023 Martijn De Jongh (Martino)
+ * Copyright (C) 2024 Martijn De Jongh (Martino)
  *
  ******************************************************************/
 
@@ -198,8 +198,6 @@ const buildStructure = (preblock, options) => {
 };
 
 const getPreBlocks = (preblocks, options, deck) => {
-  const generator = document.querySelector('[name=generator]');
-  options.quarto = generator && generator.content.includes("quarto") ? true : false;
   let revealEl = deck.getRevealElement();
   revealEl.style.setProperty('--cc-copy-bg', options.copybg || options.style.copybg);
   revealEl.style.setProperty('--cc-copy-color', options.copycolor || options.style.copycolor);
@@ -259,6 +257,8 @@ const Plugin = () => {
     let pluginBaseName = es5Filename.replace(/\.[^/.]+$/, "");
     let ClipboardJSPath = options.clipboardjspath != "" ? options.clipboardjspath : "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js";
     let CopyCodeStylePath = options.csspath ? options.csspath : `${thePath}${pluginBaseName}.css` || `plugin/${pluginBaseName}/${pluginBaseName}.css`;
+    const generator = document.querySelector('[name=generator]');
+    options.quarto = generator && generator.content.includes("quarto") ? true : false;
     let preblocks = [];
     let codes = Array.from(deck.getRevealElement().querySelectorAll("code"));
     codes.forEach(code => {
@@ -281,10 +281,15 @@ const Plugin = () => {
       });
     } else {
       if (preblocks.length > 0) {
-        loadResource(CopyCodeStylePath, 'stylesheet', () => {
+        if (options.quarto) {
           getPreBlocks(preblocks, options, deck);
           doClipboard(options);
-        });
+        } else {
+          loadResource(CopyCodeStylePath, 'stylesheet', () => {
+            getPreBlocks(preblocks, options, deck);
+            doClipboard(options);
+          });
+        }
       }
     }
   };

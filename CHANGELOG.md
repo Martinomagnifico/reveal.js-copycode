@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.7] - 2024-01-01
+
+### Changed
+- Quarto fix
+
+
 ## [1.1.6] - 2023-12-31
 
 ### Changed

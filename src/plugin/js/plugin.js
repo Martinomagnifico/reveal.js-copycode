@@ -20,6 +20,8 @@ const Plugin = () => {
 
 		let ClipboardJSPath = options.clipboardjspath != "" ? options.clipboardjspath : null || "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js";
 		let CopyCodeStylePath = options.csspath ? options.csspath : null || `${thePath}${pluginBaseName}.css` || `plugin/${pluginBaseName}/${pluginBaseName}.css`;
+		const generator = document.querySelector('[name=generator]');
+		options.quarto = (generator && generator.content.includes("quarto")) ? true : false
 
 		let preblocks = [];
 		let codes = Array.from(deck.getRevealElement().querySelectorAll("code"));
@@ -44,10 +46,15 @@ const Plugin = () => {
 			});
 		} else {
 			if (preblocks.length > 0) {
-				loadResource(CopyCodeStylePath, 'stylesheet', () => {
+				if (options.quarto) {
 					getPreBlocks(preblocks, options, deck);
 					doClipboard(options);
-				});
+				} else {
+					loadResource(CopyCodeStylePath, 'stylesheet', () => {
+						getPreBlocks(preblocks, options, deck);
+						doClipboard(options);
+					});
+				}
 			}
 		}
 	};

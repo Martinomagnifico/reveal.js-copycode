@@ -2,9 +2,6 @@ import {buildStructure} from "./build-structure.js";
 
 export const getPreBlocks = (preblocks, options, deck) => {
 
-	const generator = document.querySelector('[name=generator]');
-	options.quarto = (generator && generator.content.includes("quarto")) ? true : false
-
 	let revealEl = deck.getRevealElement();
 
 	revealEl.style.setProperty('--cc-copy-bg',  options.copybg || options.style.copybg );
