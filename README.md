@@ -10,6 +10,7 @@ In Reveal.js presentations we can show blocks of code. This plugin for Reveal.js
 
 * [Demo](https://martinomagnifico.github.io/reveal.js-copycode/demo/demo.html)
 * [Markdown demo](https://martinomagnifico.github.io/reveal.js-copycode/demo/demo-markdown.html)
+* [Demo custom design](https://martinomagnifico.github.io/reveal.js-copycode/demo/demo-custom.html)
 
 It's easy to set up. If your code blocks are set up like this:
 

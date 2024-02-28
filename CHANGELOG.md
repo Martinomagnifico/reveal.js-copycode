@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.8] - 2024-02-29
+
+### Changed
+- Fix for fragment code blocks (@Toshizuki in #10)
+
+
 ## [1.1.7] - 2024-01-01
 
 ### Changed

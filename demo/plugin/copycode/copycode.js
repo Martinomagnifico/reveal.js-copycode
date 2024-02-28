@@ -2,7 +2,7 @@
 /*****************************************************************
  *
  * CopyCode for Reveal.js 
- * Version 1.1.7
+ * Version 1.1.8
  * 
  * @author: Martijn De Jongh (Martino), martijn.de.jongh@gmail.com
  * https://github.com/martinomagnifico
@@ -168,39 +168,41 @@
 	      preblock.parentNode.insertBefore(codeblock, preblock);
 	    }
 	  }
-	  codeblock.classList.add("codeblock");
 	  if (dataHolder.dataset.cc && dataHolder.dataset.cc == "false") {
 	    return;
 	  }
+	  if (codeblock) {
+	    codeblock.classList.add("codeblock");
 
-	  // Put the pre inside the wrapper
-	  codeblock.appendChild(preblock);
-	  if (options.display == "icons" || options.display == "both") {
-	    dataHolder.dataset.ccDisplay = options.display;
-	  }
-	  if (preblock.classList.contains("fragment")) {
-	    codeblock.classList.add("fragment");
-	    preblock.classList.remove("fragment");
-	  }
-	  let button = document.createElement("button");
-	  button.title = "Copy to Clipboard";
-	  button.textholder = button;
-	  if (options.button != "always") {
-	    button.dataset["cc"] = options.button;
-	  }
-	  let possibleAttributes = ["cc", "ccCopy", "ccCopied", "ccDisplay"];
-	  possibleAttributes.forEach(attribute => {
-	    if (dataHolder.dataset[attribute]) {
-	      button.dataset[attribute] = dataHolder.dataset[attribute];
-	      delete dataHolder.dataset[attribute];
+	    // Put the pre inside the wrapper
+	    codeblock.appendChild(preblock);
+	    if (options.display == "icons" || options.display == "both") {
+	      dataHolder.dataset.ccDisplay = options.display;
 	    }
-	  });
-	  let code = preblock.querySelectorAll('code')[0];
-	  if (code && code.innerText) {
-	    // Style the button
-	    styleButton(button, options);
-	    // Insert the button
-	    codeblock.insertBefore(button, preblock);
+	    if (preblock.classList.contains("fragment")) {
+	      codeblock.classList.add("fragment");
+	      preblock.classList.remove("fragment");
+	    }
+	    let button = document.createElement("button");
+	    button.title = "Copy to Clipboard";
+	    button.textholder = button;
+	    if (options.button != "always") {
+	      button.dataset["cc"] = options.button;
+	    }
+	    let possibleAttributes = ["cc", "ccCopy", "ccCopied", "ccDisplay"];
+	    possibleAttributes.forEach(attribute => {
+	      if (dataHolder.dataset[attribute]) {
+	        button.dataset[attribute] = dataHolder.dataset[attribute];
+	        delete dataHolder.dataset[attribute];
+	      }
+	    });
+	    let code = preblock.querySelectorAll('code')[0];
+	    if (code && code.innerText) {
+	      // Style the button
+	      styleButton(button, options);
+	      // Insert the button
+	      codeblock.insertBefore(button, preblock);
+	    }
 	  }
 	};
 
@@ -270,7 +272,7 @@
 	    let codes = Array.from(deck.getRevealElement().querySelectorAll("code"));
 	    codes.forEach(code => {
 	      if (code.parentNode.tagName === "PRE") {
-	        preblocks.push(code.parentNode);
+	        preblocks = [...new Set([...preblocks, code.parentNode])];
 	      }
 	    });
 	    if (typeof ClipboardJS != "function") {
@@ -332,7 +334,6 @@
 	        // User can paste <svg>…</svg> code here
 	        copied: '' // User can paste <svg>…</svg> code here
 	      },
-
 	      csspath: "",
 	      clipboardjspath: ""
 	    };

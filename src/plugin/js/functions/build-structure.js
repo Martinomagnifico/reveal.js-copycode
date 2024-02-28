@@ -18,46 +18,48 @@ export const buildStructure = (preblock, options) => {
 		}
 	}
 
-	codeblock.classList.add("codeblock");
-
 	if (dataHolder.dataset.cc && dataHolder.dataset.cc == "false") {
 		return
 	}
 
-	// Put the pre inside the wrapper
-	codeblock.appendChild(preblock);
+	if (codeblock) {
+		codeblock.classList.add("codeblock");
 
-	if (options.display == "icons" || options.display == "both") {
-		dataHolder.dataset.ccDisplay = options.display;
-	}
+		// Put the pre inside the wrapper
+		codeblock.appendChild(preblock);
 
-	if (preblock.classList.contains("fragment")) {
-		codeblock.classList.add("fragment");
-		preblock.classList.remove("fragment")
-	}
-
-	let button = document.createElement("button");
-	button.title="Copy to Clipboard";
-	button.textholder = button;
-
-	if (options.button != "always" ) {
-		button.dataset["cc"] = options.button;
-	}
-
-	let possibleAttributes = ["cc", "ccCopy", "ccCopied", "ccDisplay"];
-
-	possibleAttributes.forEach(attribute => {
-		if (dataHolder.dataset[attribute]) {
-			button.dataset[attribute] = dataHolder.dataset[attribute];
-			delete dataHolder.dataset[attribute];
+		if (options.display == "icons" || options.display == "both") {
+			dataHolder.dataset.ccDisplay = options.display;
 		}
-	} );
 
-	let code = preblock.querySelectorAll('code')[0];
-	if (code && code.innerText) {
-		// Style the button
-		styleButton(button, options);
-		// Insert the button
-		codeblock.insertBefore(button, preblock);
+		if (preblock.classList.contains("fragment")) {
+			codeblock.classList.add("fragment");
+			preblock.classList.remove("fragment")
+		}
+
+		let button = document.createElement("button");
+		button.title="Copy to Clipboard";
+		button.textholder = button;
+
+		if (options.button != "always" ) {
+			button.dataset["cc"] = options.button;
+		}
+
+		let possibleAttributes = ["cc", "ccCopy", "ccCopied", "ccDisplay"];
+
+		possibleAttributes.forEach(attribute => {
+			if (dataHolder.dataset[attribute]) {
+				button.dataset[attribute] = dataHolder.dataset[attribute];
+				delete dataHolder.dataset[attribute];
+			}
+		} );
+
+		let code = preblock.querySelectorAll('code')[0];
+		if (code && code.innerText) {
+			// Style the button
+			styleButton(button, options);
+			// Insert the button
+			codeblock.insertBefore(button, preblock);
+		}
 	}
 }

@@ -56,7 +56,6 @@ Copy the `copycode` folder to the plugins folder of the reveal.js folder, like t
 This plugin is also published to, and can be installed from, npm.
 <!-- .element: class="small" -->
 
----
 
 ## Now change it
 

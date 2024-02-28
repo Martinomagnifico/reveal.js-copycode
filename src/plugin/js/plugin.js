@@ -27,7 +27,7 @@ const Plugin = () => {
 		let codes = Array.from(deck.getRevealElement().querySelectorAll("code"));
 		codes.forEach((code) => {
 			if (code.parentNode.tagName === "PRE") {
-				preblocks.push(code.parentNode);
+				preblocks = [...new Set([...preblocks, code.parentNode])];
 			}
 		});
 
