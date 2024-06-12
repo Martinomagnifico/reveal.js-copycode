@@ -5,12 +5,12 @@ export const doClipboard = (options) => {
 		text: function(trigger) {
 			let code = trigger.nextElementSibling.querySelectorAll('code')[0];
 
-			var table = code.querySelector('table');
+			const table = code.querySelector('table');
 			if (table == null) {
 				return code.innerText.replace(/^\s+|\s+$/g, "")
 			}
 
-			var result = "";
+			let result = "";
 
 			for (let row of table.rows) {
 				for (let cell of row.cells) {

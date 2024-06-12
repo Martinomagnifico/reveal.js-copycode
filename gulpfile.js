@@ -2,6 +2,9 @@
 
 const { src, dest, watch, series, parallel } = require('gulp');
 
+const fs = require('fs');
+const path = require('path');
+
 const pkg = require('./package.json');
 const sass = require('gulp-sass')(require('sass'));
 
@@ -18,7 +21,7 @@ const terser = require('@rollup/plugin-terser');
 
 const rename = require("gulp-rename");
 const merge = require('merge-stream');
-const header = require('gulp-header');
+const tap = require('gulp-tap');
 const del = require('del');
 
 const isProduction = process.env.NODE_ENV === 'production' || process.env.NODE_ENV === 'prod';
@@ -31,9 +34,7 @@ const sourcefolder = "./src";
 
 let demofolder = "./demo";
 let distfolder = "./plugin";
-let distjsfolder = `${distfolder}/${pkg.functionname.toLowerCase()}`;
-let demojsfolder = `${demofolder}/plugin/${pkg.functionname.toLowerCase()}`;
-let pluginfolder = isProduction ? distjsfolder : demojsfolder;
+let pluginfolder = isProduction ? `${distfolder}/${pkg.functionname.toLowerCase()}` : `${demofolder}/plugin/${pkg.functionname.toLowerCase()}`;
 
 /************
  VIEW LOCALS
@@ -67,6 +68,8 @@ const banner = `
  * Copyright (C) 2024 ${pkg.author.name}
  *
  ******************************************************************/
+
+\r\n
 `
 
 
@@ -115,11 +118,12 @@ const copydeps = () => {
 			if (dep == "reveal.js") {
 				// Copy only the basic Reveal.js files
 				const revealbase = "node_modules/reveal.js/";
-				return src([`${revealbase}dist/**`, `${revealbase}plugin/**`], { base: revealbase } ).pipe(dest(`${demofolder}`) )
+
+				return src([`${revealbase}dist/**`, `${revealbase}plugin/**`], { base: revealbase, encoding: false, buffer: true, removeBOM: false } ).pipe(dest(`${demofolder}`) )
 			} else {
 				// Copy any other dependencies (plugins). If they have names like reveal.js-plugin, remove the first part
 				let basename = dep.replace('reveal.js-', '');
-				return src([`node_modules/${dep}/plugin/${basename}/**`, `!node_modules/${dep}/**/plugin-src.js`]).pipe(dest(`${demofolder}/plugin/${basename}`) )
+				return src([`node_modules/${dep}/plugin/${basename}/**`, `!node_modules/${dep}/**/plugin-src.js`], { encoding: false, buffer: true, removeBOM: false }).pipe(dest(`${demofolder}/plugin/${basename}`) )
 			}
 		});
 		return merge(tasks);
@@ -128,7 +132,7 @@ const copydeps = () => {
 
 let cache = {};
 
-const distjs = () => {
+const pluginjs = () => {
 	return rollup({
 		cache: cache.umd,
 		input: `${sourcefolder}/plugin/js/plugin.js`,
@@ -140,52 +144,23 @@ const distjs = () => {
 		]
 	}).then( bundle => {
 		cache.umd = bundle.cache;
-		console.log(`Writing dist JS files to ${distjsfolder}`);
 		bundle.write({
 			name: pkg.functionname,
-			file: `${distjsfolder}/${pkg.functionname.toLowerCase()}.js`,
+			file: `${pluginfolder}/${pkg.functionname.toLowerCase()}.js`,
 			format: 'umd',
 			banner: banner,
-			sourcemap: false
+			sourcemap: !isProduction
 		})
 		bundle.write({
 			name: pkg.functionname,
-			file: `${distjsfolder}/${pkg.functionname.toLowerCase()}.esm.js`,
+			file: `${pluginfolder}/${pkg.functionname.toLowerCase()}.esm.js`,
 			format: 'es',
 			banner: banner,
-			sourcemap: false
+			sourcemap: !isProduction
 		});
 	});
 }
 
-
-const demojs = () => {
-	return rollup({
-		cache: cache.umd,
-		input: `${sourcefolder}/plugin/js/plugin.js`,
-		plugins: [
-			babel( babelConfig ),
-			resolve(),
-			commonjs()
-		]
-	}).then( bundle => {
-		cache.umd = bundle.cache;
-		bundle.write({
-			name: pkg.functionname,
-			file: `${demojsfolder}/${pkg.functionname.toLowerCase()}.js`,
-			format: 'umd',
-			banner: banner,
-			sourcemap: true
-		})
-		bundle.write({
-			name: pkg.functionname,
-			file: `${demojsfolder}/${pkg.functionname.toLowerCase()}.esm.js`,
-			format: 'es',
-			banner: banner,
-			sourcemap: true
-		});
-	});
-}
 const pluginstyles = () => {
 	return (
 		src(`${sourcefolder}/plugin/css/plugin.scss`)
@@ -193,7 +168,9 @@ const pluginstyles = () => {
 		.pipe(sass())
 		.pipe(autoprefixer())
 		.pipe(rename(`${pkg.functionname.toLowerCase()}.css`))
-		.pipe(header(banner + "\n"))
+		.pipe(tap((file) => {
+			file.contents = Buffer.concat([Buffer.from(banner),file.contents]);
+		}))
 		.pipe(dest(pluginfolder))
 		.pipe(browserSync.stream())
 	);
@@ -227,26 +204,50 @@ const demoviews = () => {
 }
 
 const demoimg = () => {
+	const imagePath = path.join(`${sourcefolder}/demo/img`);
+    if (!fs.existsSync(imagePath)) {
+        return Promise.resolve(); // Return a resolved promise to indicate the task is complete
+    }
+
 	return (
-		src(`${sourcefolder}/demo/img/**/*.{gif,jpg,png,svg}`)
+		src(`${sourcefolder}/demo/img/**/*.{gif,jpg,png,svg}`, {encoding: false, buffer: true, removeBOM: false})
 		.pipe(dest(`${demofolder}/assets/img/` ))
+	)
+};
+
+const demovid = () => {
+	const videoPath = path.join(`${sourcefolder}/demo/vid`);
+    if (!fs.existsSync(videoPath)) {
+        return Promise.resolve(); // Return a resolved promise to indicate the task is complete
+    }
+
+	return (
+		src(`${sourcefolder}/demo/vid/**/*.{mp4,webm,ogg}`, {encoding: false, buffer: true, removeBOM: false})
+		.pipe(dest(`${demofolder}/assets/vid/` ))
+	)
+};
+
+
+const demofonts = () => {
+    const fontsPath = path.join(`${sourcefolder}/demo/fonts`);
+    if (!fs.existsSync(fontsPath)) {
+        return Promise.resolve(); // Return a resolved promise to indicate the task is complete
+    }
+
+	return (
+		src(`${sourcefolder}/demo/fonts/**/*.{eot,svg,woff,ttf,woff2}`, {encoding: false, buffer: true, removeBOM: false})
+		.pipe(dest(`${demofolder}/assets/fonts/` ))
 	)
 };
 
 const demomd = () => {
 	return (
-		src(`${sourcefolder}/demo/html/*.md`)
+		src(`${sourcefolder}/demo/html/**/*.md`)
 		.pipe(dest(`${demofolder}/` ))
 		.pipe(browserSync.stream())
 	)
 };
 
-const demofonts = () => {
-	return (
-		src(`${sourcefolder}/assets/fonts/**/*.{eot,svg,woff,ttf,woff2}`)
-		.pipe(dest(`${demofolder}/assets/fonts/` ))
-	)
-};
 
 // Browsersync Tasks
 const serve = (callback) =>  {
@@ -265,13 +266,13 @@ const watchtask = (done) => {
 	watch(`${sourcefolder}/demo/css/**/*.scss`, demostyles);
 	watch(`${sourcefolder}/demo/**/*.md`, demomd);
 	watch(`${sourcefolder}/plugin/css/*.scss`, pluginstyles);
-	watch(`${sourcefolder}/plugin/js/**/*.js`, demojs);
+	watch(`${sourcefolder}/plugin/js/**/*.js`, pluginjs);
 	watch(`${sourcefolder}/**/*.{gif,jpg,png,svg}`, demoimg);
 	done();
 }
 
-const devTask = parallel(copydeps, demofonts, demoimg, demostyles, demomd, pluginstyles, demojs, demoviews);
-const buildTask = parallel(pluginstyles, distjs);
+const devTask = parallel(copydeps, demofonts, demoimg, demovid, demostyles, demomd, pluginstyles, pluginjs, demoviews);
+const buildTask = parallel(pluginstyles, pluginjs);
 
 exports.demo = series(cleandev, devTask, serve, watchtask);
 exports.build = series(cleandist, buildTask);

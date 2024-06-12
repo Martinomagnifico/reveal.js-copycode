@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0] - 2024-06-12
+
+### Added
+- Added a 'cssautoload' option that can be disabled if the user wants to use npm imports for the CSS file. This is useful for users who want to use a bundler like Webpack or Parcel.
+
+## [1.1.9] - 2024-02-29
+
+### Changed
+- Fix extra indentation with line numbers using hljs table (@hayesall in #14)
+- Change gulp header function
+- Change loading of styles (thanks to @jenwirth in #12)
+
+
 ## [1.1.8] - 2024-02-29
 
 ### Changed

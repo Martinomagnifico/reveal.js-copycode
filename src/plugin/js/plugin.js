@@ -19,7 +19,8 @@ const Plugin = () => {
 		let pluginBaseName = es5Filename.replace(/\.[^/.]+$/, "");
 
 		let ClipboardJSPath = options.clipboardjspath != "" ? options.clipboardjspath : null || "https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js";
-		let CopyCodeStylePath = options.csspath ? options.csspath : null || `${thePath}${pluginBaseName}.css` || `plugin/${pluginBaseName}/${pluginBaseName}.css`;
+		let PluginStylePath = options.csspath ? options.csspath : null || `${thePath}${pluginBaseName}.css` || `plugin/${pluginBaseName}/${pluginBaseName}.css`;
+
 		const generator = document.querySelector('[name=generator]');
 		options.quarto = (generator && generator.content.includes("quarto")) ? true : false
 
@@ -35,10 +36,16 @@ const Plugin = () => {
 			loadResource(ClipboardJSPath, 'script', () => {
 				if (typeof ClipboardJS === "function") {
 					if (preblocks.length > 0) {
-						loadResource(CopyCodeStylePath, 'stylesheet', () => {
+
+						if (options.cssautoload && !options.quarto) {
+							loadResource(PluginStylePath, 'stylesheet', () => {
+								getPreBlocks(preblocks, options, deck);
+								doClipboard(options);
+							});
+						} else {
 							getPreBlocks(preblocks, options, deck);
 							doClipboard(options);
-						});
+						}
 					}
 				} else {
 					console.log("Clipboard.js did not load");
@@ -50,10 +57,15 @@ const Plugin = () => {
 					getPreBlocks(preblocks, options, deck);
 					doClipboard(options);
 				} else {
-					loadResource(CopyCodeStylePath, 'stylesheet', () => {
+					if (options.cssautoload) {
+						loadResource(PluginStylePath, 'stylesheet', () => {
+							getPreBlocks(preblocks, options, deck);
+							doClipboard(options);
+						});
+					} else {
 						getPreBlocks(preblocks, options, deck);
 						doClipboard(options);
-					});
+					}
 				}
 			}
 		}
@@ -68,6 +80,7 @@ const Plugin = () => {
 
 		let defaultOptions = {
 			button: "always",
+			debug: true,
 			display: "text",
 			text: {
 				copy: "Copy",
@@ -91,7 +104,8 @@ const Plugin = () => {
 				copy: '',   // User can paste <svg>…</svg> code here
 				copied: ''  // User can paste <svg>…</svg> code here
 			},
-			csspath: "",
+			cssautoload: true,
+			csspath: '',
 			clipboardjspath: ""
 		};
 
