@@ -99,7 +99,7 @@ If you **import** reveal.js-copycode from npm, you will need to **import** the C
 import 'reveal.js-copycode/plugin/copycode/copycode.css';
 ```
 
-Note that if you use 'import' like this, then in the `csspath` option (in the Reveal copycode options) should be set to false. But if you know the actual full path to the CSS file, then you can still use the csspath option and keep cssautoload set to true.
+Note that if you use 'import' like this, then in the `csspath` option (in the Reveal copycode options) should be set to false. But if you know the actual full path to the CSS file, then you can still use the `csspath` option and keep `cssautoload` set to `true`.
 
 If you want to change the CopyCode style, you do a lot of that via the Reveal.js options. Or you can simply make your own style and use that stylesheet instead. Linking to your custom styles can be managed through the `csspath` option of CopyCode.
 
@@ -228,7 +228,7 @@ Reveal.initialize({
 * **`iconsvg`**: This option is an object with placeholders for SVG icons for the 'copy' and 'copied' state. If left empty, it will use the default icons.
 	* **`copy`**: An SVG string (`<svg>...</svg>`) can be pasted here.
 	* **`copied`**: An SVG string (`<svg>...</svg>`) can be pasted here.
-* **`cssautoload`**: CopyCode will load the CSS if this is set to `true`. If you import reveal.js-copycode from npm, you will need to import the CSS file yourself. If you use 'import', then csspath should be set to `false`. If you know the path to the CSS file, you can use the `csspath` option and keep cssautoload set to `true`.
+* **`cssautoload`**: CopyCode will load the CSS if this is set to `true`. If you import reveal.js-copycode from npm, you will need to import the CSS file yourself. If you use 'import', then `csspath` should be set to `false`. If you know the path to the CSS file, you can use the `csspath` option and keep `cssautoload` set to `true`.
 * **`csspath`**: CopyCode will automatically load the styling. If you want to customise the styling, you can link to your own CSS file here. 
 * **`clipboardjspath`**: This is the path to ClipboardJS. When nothing is filled in here, it will automatically load from a CDN. 
 
