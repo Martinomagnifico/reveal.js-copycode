@@ -57,7 +57,7 @@ The CopyCode plugin folder can then be referenced from `node_modules/reveal.js-c
 
 ### JavaScript
 
-There are two JavaScript files for CopyCode, a regular one, `copycode.js`, and a module one, `copycode.esm.js`. You only need one of them:
+There are two JavaScript files for CopyCode, a regular one, `copycode.js`, and a module one, `copycode.mjs`. You only need one of them:
 
 #### Regular 
 If you're not using ES modules, for example, to be able to run your presentation from the filesystem, you can add it like this:
@@ -78,7 +78,7 @@ If you're using ES modules, you can add it like this:
 ```html
 <script type="module">
 	// This will need a server
-	import Reveal from './dist/reveal.esm.js';
+	import Reveal from './dist/reveal.mjs';
 	import CopyCode from './plugin/copycode/copycode';
 	Reveal.initialize({
 		// ...
