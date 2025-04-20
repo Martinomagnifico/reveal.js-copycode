@@ -61,8 +61,6 @@
     "peerDependencies": {
         "reveal.js": ">=4.0.0"
     },
-    "private": true,
-
     "functionname": "CopyCode",
     "demo": {
         "presentation": {
