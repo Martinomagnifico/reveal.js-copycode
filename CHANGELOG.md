@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.0] - 2024-06-12
+
+### Changed
+- This new version is built with Vite
+- Removes dependency on Clipboard.js and uses the native Clipboard API instead
+
 ## [1.2.0] - 2024-06-12
 
 ### Added

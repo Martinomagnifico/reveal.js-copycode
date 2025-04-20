@@ -1,0 +1,34 @@
+extends templates/layouts/_reveal.pug
+
+block slides
+	include slides/_slides
+
+block beforeslides
+	+badge(plugin.name.toLowerCase())
+
+block append scripts
+	+revealsrc("script", "plugin/highlight/highlight.js")
+
+	if process.env.NODE_ENV === 'production'
+		script(src=`plugin/${plugin.name}/${plugin.name}.js`)
+		script.
+			Reveal.initialize({
+				margin: 0.15, maxScale: 1.8, width: 1080, height: 700,
+				history: true, center: true, controlsTutorial: false,
+				plugins: [ CopyCode, RevealHighlight ],
+				copycode: {
+					debug: true
+				}
+			});
+	else
+		script(type="module").
+			import CopyCode from '@/plugin/js/index';
+			Reveal.initialize({
+				margin: 0.15, maxScale: 1.8, width: 1080, height: 700,
+				history: true, center: true, controlsTutorial: false,
+				plugins: [ CopyCode, RevealHighlight ],
+				copycode: {
+					debug: true,
+					cssautoload: false
+				}
+			});

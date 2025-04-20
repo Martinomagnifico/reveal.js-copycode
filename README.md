@@ -87,7 +87,7 @@ If you're using ES modules, you can add it like this:
 </script>
 ```
 
-CopyCode automatically inserts one other (great) script to be able to function: [Clipboard.js](https://clipboardjs.com/) by [Zeno Rocha](https://zenorocha.com). This uses modern techniques to copy text to clipboard.
+CopyCode no longer needs Clipboard.js but now uses the native browser implementation to copy to the clipboard.
 
 
 ### Styling
@@ -230,7 +230,6 @@ Reveal.initialize({
 	* **`copied`**: An SVG string (`<svg>...</svg>`) can be pasted here.
 * **`cssautoload`**: CopyCode will load the CSS if this is set to `true`. If you import reveal.js-copycode from npm, you will need to import the CSS file yourself. If you use 'import', then `csspath` should be set to `false`. If you know the path to the CSS file, you can use the `csspath` option and keep `cssautoload` set to `true`.
 * **`csspath`**: CopyCode will automatically load the styling. If you want to customise the styling, you can link to your own CSS file here. 
-* **`clipboardjspath`**: This is the path to ClipboardJS. When nothing is filled in here, it will automatically load from a CDN. 
 
 The global options make CopyCode very customizable. To make the buttons look more like the standard GitHub copy-buttons, you can tweak the above configuration like this:
 

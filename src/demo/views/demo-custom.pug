@@ -1,0 +1,55 @@
+extends templates/layouts/_reveal.pug
+
+block slides
+	include slides/_slides
+
+block append scripts
+	+revealsrc("script", "plugin/highlight/highlight.js")
+
+	if process.env.NODE_ENV === 'production'
+		script(src=`plugin/${plugin.name}/${plugin.name}.js`)
+		script.
+			Reveal.initialize({
+				margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+				history: true, center: true, controlsTutorial: false,
+				plugins: [ CopyCode, RevealHighlight ],
+				copycode: {
+					debug: true,
+					timeout: 1200, 
+					button: "always", 
+					display: "icons", 
+					style: { 
+						copybg: "rgba(255,255,255,128)", 
+						copiedbg: "white", 
+						copyborder: "2px solid gray", 
+						copiedborder: "2px solid green",
+						copiedcolor: "green", 
+						offset: 0.5,
+						radius: 0.2
+					}
+				}
+			});
+	else
+		script(type="module").
+			import CopyCode from '@/plugin/js/index';
+			Reveal.initialize({
+				margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+				history: true, center: true, controlsTutorial: false,
+				plugins: [ CopyCode, RevealHighlight ],
+				copycode: {
+					debug: true,
+					cssautoload: false,
+					timeout: 1200,
+					button: "always",
+					display: "icons",
+					style: { 
+						copybg: "rgba(255,255,255,128)", 
+						copiedbg: "white", 
+						copyborder: "2px solid gray", 
+						copiedborder: "2px solid green",
+						copiedcolor: "green", 
+						offset: 0.5,
+						radius: 0.2
+					}
+				}
+			});

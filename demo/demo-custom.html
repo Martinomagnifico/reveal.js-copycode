@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>CopyCode</title>
+    <title>CopyCode demo</title>
     <meta name="author" content="Martijn De Jongh (Martino)">
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="dist/reset.css">
@@ -14,25 +14,224 @@
     <link rel="stylesheet" href="assets/css/demo.css">
   </head>
   <body>
-    <div class="reveal"><a class="github-corner" href="https://github.com/martinomagnifico/reveal.js-copycode" target="blank" title="View source on GitHub">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 55 55">
-          <path fill="currentColor" d="M27.5 11.2a16.3 16.3 0 0 0-5.1 31.7c.8.2 1.1-.3 1.1-.7v-2.8c-4.5 1-5.5-2.2-5.5-2.2-.7-1.9-1.8-2.4-1.8-2.4-1.5-1 .1-1 .1-1 1.6.1 2.5 1.7 2.5 1.7 1.5 2.5 3.8 1.8 4.7 1.4.2-1 .6-1.8 1-2.2-3.5-.4-7.3-1.8-7.3-8 0-1.8.6-3.3 1.6-4.4-.1-.5-.7-2.1.2-4.4 0 0 1.4-.4 4.5 1.7a15.6 15.6 0 0 1 8.1 0c3.1-2 4.5-1.7 4.5-1.7.9 2.3.3 4 .2 4.4 1 1 1.6 2.6 1.6 4.3 0 6.3-3.8 7.7-7.4 8 .6.6 1.1 1.6 1.1 3v4.6c0 .4.3.9 1.1.7a16.3 16.3 0 0 0-5.2-31.7"></path>
-        </svg></a>
+    <div class="reveal" id="deck1">
       <div class="slides">
         <section>
           <h1>CopyCode</h1>
-          <h3>for Reveal.js</h3>
-          <p class="small">Customized copy button</p>
+          <h3>for Reveal.js</h3><br>
           <pre><code class="hljs javascript" data-line-numbers style="font-size: 1em">let why = `Because we always want to copy code
            during our presentations, right?`</code></pre>
         </section>
         <section>
-          <h3>Configuring CopyCode</h3>
-          <pre><code class="hljs javascript">copycode: { timeout: 1200, button: "hover", display: "icons", style: { copybg: "rgba(255,255,255,128)", copiedbg: "white", copyborder: "2px solid gray", copiedborder: "2px solid green", copiedcolor: "green", offset: 0.5, radius: 0.2} }</code></pre>
-          <p class="small">Add the above code to the Reveal.js configuration, and you will get a 'GitHub-flavored' copy button.</p>
+          <h3>Works out of the box</h3>
+          <pre><code class="hljs javascript" data-line-numbers>const http = require("http");
+http.createServer(function (request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.end("Hello World\n");
+}).listen(8081);</code></pre>
+          <p class="small">A 'Copy' button is automatically added to any <code>&lt;pre&gt;</code> code block.</p>
         </section>
         <section>
-          <p>This is just an example file to show a customized copy button. For more CopyCode options, check the <a href="demo.html">demo</a>.</p>
+          <section>
+            <h2>Setup </h2>
+          </section>
+          <section>
+            <h3>Basics</h3>
+            <p>There are really only three steps:</p>
+            <ol>
+              <li>Install and set up CopyCode</li>
+              <li>Copy your code from a code block</li>
+              <li>Paste your code somewhere</li>
+            </ol>
+          </section>
+          <section>
+            <h3>Install CopyCode</h3>
+            <p class="small">Copy the <code>copycode</code> folder to the plugins folder of the reveal.js folder, like this: <code>plugin/copycode</code>. Load the script and reference it from the Reveal plugin options:</p>
+            <pre><code class="hljs html" data-line-numbers>&lt;script src="plugin/copycode/copycode.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+    Reveal.initialize({
+        plugins: [ CopyCode ]
+    });
+&lt;/script&gt;</code></pre>
+            <p class="small">This plugin is also published to, and can be installed from, npm: <br> <code>npm install --save reveal.js-copycode</code></p>
+          </section>
+        </section>
+        <section>
+          <section>
+            <h2>Now change it</h2>
+            <p>You can change the visibility, the icon use or button texts easily per element: </p>
+          </section>
+          <section>
+            <h4>Change the visibility per element</h4>
+            <p class="small">Turn it off</p>
+            <pre data-cc="false"><code class="hljs html" data-line-numbers>&lt;pre data-cc="false"&gt;
+    &lt;code&gt;
+        Here is the code	
+    &lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+            <p class="small">Or show only on hover over the code block</p>
+            <pre data-cc="hover"><code class="hljs html" data-line-numbers>&lt;pre data-cc="hover"&gt;
+    &lt;code&gt;
+        Here is the code	
+    &lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+            <p class="small">This can also be set globally. See <a href="#/options">Global options</a>. Hover-only codeblocks will <em>always</em> show the copy button on touch devices.</p>
+          </section>
+          <section>
+            <h4>Change the display of icons per element</h4>
+            <pre data-cc-display="icons"><code class="hljs html" data-line-numbers>&lt;pre data-cc-display="icons"&gt;
+    &lt;code&gt;
+        Here is the code	
+    &lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+            <pre data-cc-display="both"><code class="hljs html" data-line-numbers>&lt;pre data-cc-display="both"&gt;
+    &lt;code&gt;
+        Here is the code	
+    &lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+            <p class="small">This can also be set globally. See <a href="#/options">Global options</a>.</p>
+          </section>
+          <section>
+            <h4>Change the display of text per element</h4>
+            <pre data-cc-copy="Copy HTML" data-cc-copied="Done"><code class="hljs html" data-line-numbers>&lt;pre data-cc-copy="Copy HTML" data-cc-copied="Done"&gt;
+    &lt;code&gt;
+        Here is the code
+    &lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+            <p class="small">This can also be set globally. See <a href="#/options">Global options</a>.</p>
+          </section>
+        </section>
+        <section>
+          <section id="options">
+            <h2>Global options</h2>
+            <div class="centerblock">
+              <ol class="twocol">
+                <li>button</li>
+                <li>display</li>
+                <li>text</li>
+                <li>plaintextonly</li>
+                <li>timeout</li>
+                <li>style</li>
+                <li>tooltip</li>
+                <li>iconsvg</li>
+                <li>csspath</li>
+              </ol>
+            </div>
+          </section>
+          <section>
+            <h4>Option 1: button</h4>
+            <p class="small">The <code>button</code> option is to show the button, always or only on hover. </p>
+            <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
+    copycode: {
+        button: "always" // "always"|"hover"
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+            <p class="small">This can also be set per element with data-attributes.</p>
+          </section>
+          <section>
+            <h4>Option 2: display</h4>
+            <p class="small">The <code>display</code> option is to show text in the button, icons, or both.</p>
+            <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
+    copycode: {
+        display: "text" // "text"|"icons"|"both"
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+            <p class="small">This can also be set per element with data-attributes.</p>
+          </section>
+          <section>
+            <h4>Option 3: text</h4>
+            <p class="small">The <code>text</code> option is an object that contains the texts for the 'copy' and 'copied' state.</p>
+            <pre><code class="hljs javascript" data-line-numbers="3-6">Reveal.initialize({
+    copycode: {
+        text: {
+            copy: &quot;Copy&quot;,
+            copied: &quot;Copied!&quot;
+        }
+    },
+    plugins: [ CopyCode ]</code></pre>
+            <p class="small">This can also be set per element with data-attributes.</p>
+          </section>
+          <section>
+            <h4>Option 4: plaintextonly</h4>
+            <p class="small">The <code>plaintextonly</code> option can be set to false to allow copying of rich text and styles. </p>
+            <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
+    copycode: {
+        plaintextonly: true // true|false
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+          </section>
+          <section>
+            <h4>Option 5: timeout</h4>
+            <p class="small">The <code>timeout</code> option is the time in milliseconds for the "Copied!"-state to revert back to "Copy". </p>
+            <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
+    copycode: {
+        timeout: 1000
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+          </section>
+          <section>
+            <h4>Option 6: style</h4>
+            <p class="small">The <code>style</code> option is an object that contains settings for background colors, colors, sizing, spacing and border styles. </p>
+            <pre><code class="hljs js" data-line-numbers="3-12">Reveal.initialize({
+    copycode: {
+        style: {
+            copybg: "orange", // Any CSS color, hex, named etc.
+            copiedbg: "green",
+            copycolor: "black",
+            copiedcolor: "white",
+            copyborder: "", // e.g. "1px solid blue"
+            copiedborder: "",
+            scale: 1,
+            offset: 0, // in em units
+            radius: 0  // in em units
+        }
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+          </section>
+          <section>
+            <h4>Option 7: tooltip</h4>
+            <p class="small">The <code>tooltip</code> option makes sure that the 'copied' text is shown in a tooltip, when an icon-only button display is used.</p>
+            <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
+    copycode: {
+        tooltip: true
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+          </section>
+          <section>
+            <h4>Option 8: iconsvg</h4>
+            <p class="small">The <code>iconsvg</code> option is an object with placeholders for SVG icons for the 'copy' and 'copied' state. If left empty, it will use the default icons.</p>
+            <pre><code class="hljs js" data-line-numbers="3-6">Reveal.initialize({
+    copycode: {
+        iconsvg: {
+            copy: '',  // User can paste &lt;svg&gt;…&lt;/svg&gt; code here
+            copied: '' // User can paste &lt;svg&gt;…&lt;/svg&gt; code here
+        }
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+          </section>
+          <section>
+            <h4>Option 9: csspath</h4>
+            <p class="small">The <code>csspath</code> option can be used when the you want to use your own stylesheet, instead of the provided one. </p>
+            <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
+    copycode: {
+        csspath: ''
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+            <p class="small">Use this if you really want to change things that you can't override from the Reveal.js config.</p>
+          </section>
+        </section>
+        <section>
+          <h3>Using the global options</h3>
+          <p class="small">The global options make CopyCode very customizable. For example, to make all buttons look more like the standard GitHub copy-buttons, you can tweak the configuration like this:</p>
+          <pre data-cc-copy="Copy HTML" data-cc-copied="Done"><code class="hljs json">copycode: { timeout: 1200, button: "hover", display: "icons", style: { copybg: "rgba(255,255,255,128)", copiedbg: "white", copyborder: "2px solid gray", copiedborder: "2px solid green", copiedcolor: "green", offset: 0.5, radius: 0.2} }</code></pre>
         </section>
       </div>
     </div>
@@ -40,24 +239,25 @@
     <script src="plugin/highlight/highlight.js"></script>
     <script src="plugin/copycode/copycode.js"></script>
     <script>
-      // Get the deck
-      const deck = document.querySelector(".reveal");
-      
-      // Define the plugins (Using strings)
-      let plugins = ["CopyCode", "RevealHighlight"];
-      
-      // Check the plugins
-      const pluginCheck = (plugs) => plugs.reduce((a, p) => typeof window[p] === "function" ? (a.push(window[p]), a) : (console.warn(`Plugin "${p}" does not exist.`), a), []);
-      
-      let revealdeck = new Reveal(deck);
-      revealdeck.initialize({
-      	history: true,
-      	overview: false,
-      	center: true,
-      	margin: 0.15,
-      	controlsTutorial: false,
-      	copycode: { timeout: 1200, button: "always", display: "icons", style: { copybg: "rgba(255,255,255,128)", copiedbg: "white", copyborder: "2px solid gray", copiedborder: "2px solid green", copiedcolor: "green", offset: 0.5, radius: 0.2} },
-      	plugins: pluginCheck(plugins)
+      Reveal.initialize({
+      	margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+      	history: true, center: true, controlsTutorial: false,
+      	plugins: [ CopyCode, RevealHighlight ],
+      	copycode: {
+      		debug: true,
+      		timeout: 1200, 
+      		button: "always", 
+      		display: "icons", 
+      		style: { 
+      			copybg: "rgba(255,255,255,128)", 
+      			copiedbg: "white", 
+      			copyborder: "2px solid gray", 
+      			copiedborder: "2px solid green",
+      			copiedcolor: "green", 
+      			offset: 0.5,
+      			radius: 0.2
+      		}
+      	}
       });
     </script>
   </body>
