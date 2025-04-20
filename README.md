@@ -200,8 +200,7 @@ Reveal.initialize({
             copied: ''
         },
         cssautoload: true,
-        csspath: "",
-        clipboardjspath: ""
+        csspath: ""
     },
     plugins: [ CopyCode ]
 });
