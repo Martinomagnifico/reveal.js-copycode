@@ -99,9 +99,9 @@ If you **import** reveal.js-copycode from npm, you will need to **import** the C
 import 'reveal.js-copycode/plugin/copycode/copycode.css';
 ```
 
-Note that if you use 'import' like this, then in the `csspath` option (in the Reveal copycode options) should be set to false. But if you know the actual full path to the CSS file, then you can still use the `csspath` option and keep `cssautoload` set to `true`.
+CopyCode will detect if it runs in a module environment and will then not autoload the CSS. You can still set `cssautoload` to `true` if you like, but your bundler (Vite, Webpack) may not like that. In any of these cases, `import` the CSS file yourself.
 
-If you want to change the CopyCode style, you do a lot of that via the Reveal.js options. Or you can simply make your own style and use that stylesheet instead. Linking to your custom styles can be managed through the `csspath` option of CopyCode.
+If you want to change the CopyCode style, you do a lot of that via the Reveal.js options. Or you can simply make your own style and use that stylesheet instead. Linking to your custom styles can be managed through the `csspath` option of CopyCode or through `import` when using modules.
 
 
 ## Now change it

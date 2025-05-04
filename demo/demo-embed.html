@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>CopyCode demo: embedded</title>
+    <meta name="author" content="Martijn De Jongh (Martino)">
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="dist/reset.css">
+    <link rel="stylesheet" href="dist/reveal.css">
+    <link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <link rel="stylesheet" href="assets/css/demo.css">
+    <style>
+      body {background: var(--r-background-color)}
+      
+    </style>
+  </head>
+  <body>
+    <div class="embeddemo">
+      <div class="reveal" id="deck1">
+        <div class="slides">
+          <section>
+            <h1>CopyCode</h1>
+            <pre><code class="hljs javascript" data-line-numbers>let why = `Because we always want to copy code
+		during our presentations, right?`</code></pre>
+          </section>
+        </div>
+      </div>
+      <div class="reveal" id="deck2">
+        <div class="slides">
+          <section>
+            <h1>CopyCode two</h1>
+            <pre><code class="hljs javascript" data-line-numbers>const http = require("http");
+http.createServer(function (request, response) {
+    response.writeHead(200, {"Content-Type": "text/plain"});
+    response.end("Hello World\n");
+}).listen(8081);</code></pre>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/copycode/copycode.js"></script>
+    <script>
+      const deck1 = new Reveal(document.querySelector("#deck1"), {
+      	embedded: true, keyboardCondition: 'focused',
+      	margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+      	overview: false, center: true, controlsTutorial: false,
+      	plugins: [ CopyCode, RevealHighlight ],
+      	copycode: {
+      		appearparents: true,
+      		appearevent: 'auto',
+      		autoappear: true,
+      		autoelements: {'ul li': 'animate__fadeInLeft', 'h2': {"animation":"animate__shrinkIn", "speed":"slow", "delay":"800"}}
+      	}
+      });
+      
+      const deck2 = new Reveal(document.querySelector("#deck2"), {
+      	embedded: true, keyboardCondition: 'focused',
+      	margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
+      	overview: false, center: true, controlsTutorial: false,
+      	plugins: [ CopyCode, RevealHighlight ],
+      	copycode: {
+      		appearparents: true,
+      		appearevent: 'slidechanged',
+      		autoappear: true,
+      		autoelements: {'ul li': 'animate__fadeInRight', 'h2': {"animation":"animate__fadeInUp", "speed":"slow", "delay":"800"}}
+      	}
+      });
+      deck1.initialize();
+      deck2.initialize();
+      
+    </script>
+  </body>
+</html>

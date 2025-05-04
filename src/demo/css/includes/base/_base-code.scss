@@ -2,8 +2,8 @@
 
 .reveal code.hljs {
 	background: var(--code-full-bg);
-	border-radius: 0.5em;
-	padding: 0.5em;
+	border-radius: 0.5rem;
+	padding: 0.5rem;
 	white-space: pre-wrap;
 
 	td {
@@ -27,5 +27,4 @@ p.code, p code, small code, .small code, li code {
 	overflow: auto;
 	max-height: 400px;
 	word-wrap: normal;
-	tab-size: 4;
 }

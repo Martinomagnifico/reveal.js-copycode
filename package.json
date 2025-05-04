@@ -1,8 +1,16 @@
 {
     "name": "reveal.js-copycode",
-    "version": "1.3.0",
+    "version": "1.3.1",
     "description": "A simple plugin for Reveal.js that automatically shows a copy button in code blocks",
-    "keywords": [ "reveal", "reveal.js", "reveal-plugin", "plugin", "code editor", "clipboard.js", "copy code"],
+    "keywords": [
+        "reveal",
+        "reveal.js",
+        "reveal-plugin",
+        "plugin",
+        "code editor",
+        "clipboard.js",
+        "copy code"
+    ],
     "homepage": "https://github.com/martinomagnifico/reveal.js-copycode",
     "license": "MIT",
     "author": {
@@ -16,7 +24,6 @@
         "type": "git",
         "url": "git://github.com/martinomagnifico/reveal.js-copycode.git"
     },
-
     "type": "module",
     "main": "./plugin/copycode/copycode.js",
     "module": "./plugin/copycode/copycode.mjs",
@@ -24,7 +31,9 @@
         ".": {
             "import": "./plugin/copycode/copycode.mjs",
             "require": "./plugin/copycode/copycode.js"
-        }
+        },
+        "./plugin/copycode/copycode.css": "./plugin/copycode/copycode.css",
+        "./copycode.css": "./plugin/copycode/copycode.css"
     },
     "style": "./plugin/copycode/copycode.css",
     "files": [
@@ -44,14 +53,13 @@
         "check": "biome check --write .",
         "ci": "biome ci ."
     },
-
     "devDependencies": {
         "@biomejs/biome": "latest",
         "@types/node": "^22.10.1",
         "@types/reveal.js": "^5.0.4",
         "@vituum/vite-plugin-pug": "latest",
         "fs-extra": "latest",
-        "reveal.js-plugintoolkit": "latest",
+        "reveal.js-plugintoolkit": "0.2.1",
         "rimraf": "^6.0.1",
         "sass": "latest",
         "typescript": "^5.7.2",

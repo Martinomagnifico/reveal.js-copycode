@@ -1,15 +1,24 @@
 # Changelog
 
+## [1.3.1] - 2024-05-04
+
+### Changed
+- Add an embedded demo
+- The plugin will now check if it is running in a module environment and will then not autoload the CSS. You can still set `cssautoload` to `true` if you like, but your bundler (Vite, Webpack) may not like that. In any of these cases, `import` the CSS file yourself.
+
+
 ## [1.3.0] - 2024-06-12
 
 ### Changed
 - This new version is built with Vite
 - Removes dependency on Clipboard.js and uses the native Clipboard API instead
 
+
 ## [1.2.0] - 2024-06-12
 
 ### Added
 - Added a 'cssautoload' option that can be disabled if the user wants to use npm imports for the CSS file. This is useful for users who want to use a bundler like Webpack or Parcel.
+
 
 ## [1.1.9] - 2024-02-29
 

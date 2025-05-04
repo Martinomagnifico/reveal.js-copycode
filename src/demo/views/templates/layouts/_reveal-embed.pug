@@ -1,12 +1,19 @@
 extends _base.pug
 
 block content
-	block beforereveal
-	.reveal#deck1
-		block beforeslides
-		.slides
-			block slides
-		block afterslides
+	.embeddemo
+		.reveal#deck1
+			block beforeslides
+
+			.slides
+				block slides
+
+		.reveal#deck2
+			block beforeslides
+
+			.slides
+				block slidestwo
+
 
 block append styles
 	+revealsrc("style", "dist/reset.css")
@@ -14,7 +21,7 @@ block append styles
 	+revealsrc("style", `dist/theme/${presentation.theme}.css`)
 	+revealsrc("style", "plugin/highlight/monokai.css")
 
-	
+
 	//- Demo styles
 	if process.env.NODE_ENV === 'production'
 		link(rel="stylesheet" href="assets/css/demo.css")
