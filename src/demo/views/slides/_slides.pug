@@ -123,6 +123,7 @@ section
 				li style
 				li tooltip
 				li iconsvg
+				li cssautoload
 				li csspath
 
 	section
@@ -256,9 +257,24 @@ section
 		//-
 
 
+	section
+		h4 Option 9: cssautoload
+		p.small CopyCode will automatically load the CSS if this is set to #[code true]. 
+
+		pre
+			code.hljs.js(data-line-numbers="3").
+				Reveal.initialize({
+				    copycode: {
+				        cssautoload: true
+				    },
+				    plugins: [ CopyCode ]
+				})
+		//-
+		p.small If CopyCode runs in a bundler or module environment, where you should use #[code import] for your styling, it will automatically turn off autoloading. You can still turn on autoloading, but you will need to manually add this setting like shown above.
+
 
 	section
-		h4 Option 9: csspath
+		h4 Option 10: csspath
 		p.small The #[code csspath] option can be used when the you want to use your own stylesheet, instead of the provided one. 
 		pre
 			code.hljs.js(data-line-numbers="3").
