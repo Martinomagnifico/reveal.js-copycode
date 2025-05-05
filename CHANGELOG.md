@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.2] - 2024-05-05
+
+### Changed
+- Fixed an error that occurred in embedded mode where the plugin did not correctly scope the copy buttons to the active deck.
+
+
 ## [1.3.1] - 2024-05-04
 
 ### Changed

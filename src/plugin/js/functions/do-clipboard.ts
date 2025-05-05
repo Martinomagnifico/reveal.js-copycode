@@ -63,16 +63,8 @@ export const doClipboard = async (codeBlock: HTMLElement, config: Config): Promi
 
 			// Keep indents
 			const htmlContent = `
-				<style>
-					${styles}
-					pre, code, .hljs, .hljs-ln-code {
-						white-space: pre !important;
-						font-family: monospace !important;
-					}
-				</style>
-				<div>
-					${clone.outerHTML}
-				</div>
+				<style>${styles}pre, code, .hljs, .hljs-ln-code { white-space: pre !important; font-family: monospace !important;}</style>
+				<div>${clone.outerHTML}</div>
 			`;
 			
 			// Create clipboard data

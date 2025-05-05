@@ -1,7 +1,7 @@
  /*****************************************************************
  *
  * reveal.js-copycode for Reveal.js 
- * Version 1.3.1
+ * Version 1.3.2
  * 
  * @link
  * https://github.com/martinomagnifico/reveal.js-copycode
@@ -50,81 +50,81 @@ const S = {
 function L(r) {
   return r && r.__esModule && Object.prototype.hasOwnProperty.call(r, "default") ? r.default : r;
 }
-var x, A;
+var j, A;
 function P() {
-  if (A) return x;
+  if (A) return j;
   A = 1;
-  var r = function(l) {
-    return e(l) && !t(l);
+  var r = function(i) {
+    return e(i) && !t(i);
   };
   function e(n) {
     return !!n && typeof n == "object";
   }
   function t(n) {
-    var l = Object.prototype.toString.call(n);
-    return l === "[object RegExp]" || l === "[object Date]" || i(n);
+    var i = Object.prototype.toString.call(n);
+    return i === "[object RegExp]" || i === "[object Date]" || l(n);
   }
   var o = typeof Symbol == "function" && Symbol.for, s = o ? Symbol.for("react.element") : 60103;
-  function i(n) {
+  function l(n) {
     return n.$$typeof === s;
   }
   function p(n) {
     return Array.isArray(n) ? [] : {};
   }
-  function d(n, l) {
-    return l.clone !== !1 && l.isMergeableObject(n) ? C(p(n), n, l) : n;
+  function a(n, i) {
+    return i.clone !== !1 && i.isMergeableObject(n) ? C(p(n), n, i) : n;
   }
-  function y(n, l, c) {
-    return n.concat(l).map(function(b) {
-      return d(b, c);
+  function y(n, i, c) {
+    return n.concat(i).map(function(m) {
+      return a(m, c);
     });
   }
-  function u(n, l) {
-    if (!l.customMerge)
+  function u(n, i) {
+    if (!i.customMerge)
       return C;
-    var c = l.customMerge(n);
+    var c = i.customMerge(n);
     return typeof c == "function" ? c : C;
   }
-  function a(n) {
-    return Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(n).filter(function(l) {
-      return Object.propertyIsEnumerable.call(n, l);
+  function d(n) {
+    return Object.getOwnPropertySymbols ? Object.getOwnPropertySymbols(n).filter(function(i) {
+      return Object.propertyIsEnumerable.call(n, i);
     }) : [];
   }
   function f(n) {
-    return Object.keys(n).concat(a(n));
+    return Object.keys(n).concat(d(n));
   }
-  function m(n, l) {
+  function b(n, i) {
     try {
-      return l in n;
+      return i in n;
     } catch {
       return !1;
     }
   }
-  function v(n, l) {
-    return m(n, l) && !(Object.hasOwnProperty.call(n, l) && Object.propertyIsEnumerable.call(n, l));
+  function v(n, i) {
+    return b(n, i) && !(Object.hasOwnProperty.call(n, i) && Object.propertyIsEnumerable.call(n, i));
   }
-  function $(n, l, c) {
-    var b = {};
+  function x(n, i, c) {
+    var m = {};
     return c.isMergeableObject(n) && f(n).forEach(function(h) {
-      b[h] = d(n[h], c);
-    }), f(l).forEach(function(h) {
-      v(n, h) || (m(n, h) && c.isMergeableObject(l[h]) ? b[h] = u(h, c)(n[h], l[h], c) : b[h] = d(l[h], c));
-    }), b;
+      m[h] = a(n[h], c);
+    }), f(i).forEach(function(h) {
+      v(n, h) || (b(n, h) && c.isMergeableObject(i[h]) ? m[h] = u(h, c)(n[h], i[h], c) : m[h] = a(i[h], c));
+    }), m;
   }
-  function C(n, l, c) {
-    c = c || {}, c.arrayMerge = c.arrayMerge || y, c.isMergeableObject = c.isMergeableObject || r, c.cloneUnlessOtherwiseSpecified = d;
-    var b = Array.isArray(l), h = Array.isArray(n), I = b === h;
-    return I ? b ? c.arrayMerge(n, l, c) : $(n, l, c) : d(l, c);
+  function C(n, i, c) {
+    c = c || {}, c.arrayMerge = c.arrayMerge || y, c.isMergeableObject = c.isMergeableObject || r, c.cloneUnlessOtherwiseSpecified = a;
+    var m = Array.isArray(i), h = Array.isArray(n), I = m === h;
+    return I ? m ? c.arrayMerge(n, i, c) : x(n, i, c) : a(i, c);
   }
-  C.all = function(l, c) {
-    if (!Array.isArray(l))
+  C.all = function(i, c) {
+    if (!Array.isArray(i))
       throw new Error("first argument should be an array");
-    return l.reduce(function(b, h) {
-      return C(b, h, c);
+    return i.reduce(function(m, h) {
+      return C(m, h, c);
     }, {});
   };
   var w = C;
-  return x = w, x;
+  return j = w, j;
 }
 var q = P();
 const H = /* @__PURE__ */ L(q);
@@ -141,10 +141,10 @@ const R = () => {
     s = new Function('return typeof import.meta !== "undefined" && typeof import.meta.env !== "undefined" && import.meta.env.DEV === true')();
   } catch {
   }
-  const i = r && typeof navigator < "u" && /vite|localhost|127\.0\.0\.1/.test(location.origin) && /AppleWebKit|Chrome|Vite/.test(navigator.userAgent), p = e && !!document.querySelector('script[type="module"]');
-  let d = !1;
+  const l = r && typeof navigator < "u" && /vite|localhost|127\.0\.0\.1/.test(location.origin) && /AppleWebKit|Chrome|Vite/.test(navigator.userAgent), p = e && !!document.querySelector('script[type="module"]');
+  let a = !1;
   try {
-    d = new Function('return typeof process !== "undefined" && process.env && (process.env.ROLLUP_WATCH === "true" || process.env.NODE_ENV === "development")')();
+    a = new Function('return typeof process !== "undefined" && process.env && (process.env.ROLLUP_WATCH === "true" || process.env.NODE_ENV === "development")')();
   } catch {
   }
   let y = !1;
@@ -156,11 +156,11 @@ const R = () => {
     isDevServer: t,
     isWebpackHMR: o,
     isVite: s,
-    isVitePreview: i,
+    isVitePreview: l,
     hasModuleScripts: p,
-    isModuleBundler: d,
+    isModuleBundler: a,
     isAMD: y,
-    isBundlerEnvironment: o || s || i || p || d || y || t
+    isBundlerEnvironment: o || s || l || p || a || y || t
   };
 };
 class _ {
@@ -172,7 +172,7 @@ class _ {
   initializeConfig(e) {
     const t = this.defaultConfig, o = e.getConfig()[this.pluginId] || {};
     this.userConfigData = o, this.mergedConfig = H(t, o, {
-      arrayMerge: (s, i) => i,
+      arrayMerge: (s, l) => l,
       clone: !0
     });
   }
@@ -223,13 +223,13 @@ const F = (r) => {
 }, T = "data-css-id", U = (r, e) => new Promise((t, o) => {
   const s = document.createElement("link");
   s.rel = "stylesheet", s.href = e, s.setAttribute(T, r);
-  const i = setTimeout(() => {
+  const l = setTimeout(() => {
     s.parentNode && s.parentNode.removeChild(s), o(new Error(`[${r}] Timeout loading CSS from: ${e}`));
   }, 5e3);
   s.onload = () => {
-    clearTimeout(i), t();
+    clearTimeout(l), t();
   }, s.onerror = () => {
-    clearTimeout(i), s.parentNode && s.parentNode.removeChild(s), o(new Error(`[${r}] Failed to load CSS from: ${e}`));
+    clearTimeout(l), s.parentNode && s.parentNode.removeChild(s), o(new Error(`[${r}] Failed to load CSS from: ${e}`));
   }, document.head.appendChild(s);
 }), O = (r) => document.querySelectorAll(`[${T}="${r}"]`).length > 0, z = (r) => new Promise((e) => {
   if (t())
@@ -257,16 +257,16 @@ const F = (r) => {
     s && console.log(`[${e}] CSS already loaded, skipping`);
     return;
   }
-  const i = [];
-  typeof o == "string" && o.trim() !== "" && i.push(o);
+  const l = [];
+  typeof o == "string" && o.trim() !== "" && l.push(o);
   const p = F(e);
   if (p) {
     const y = `${p}${e}.css`;
-    i.push(y);
+    l.push(y);
   }
-  const d = `plugin/${e}/${e}.css`;
-  i.push(d);
-  for (const y of i)
+  const a = `plugin/${e}/${e}.css`;
+  l.push(a);
+  for (const y of l)
     try {
       await U(e, y);
       let u = "CSS";
@@ -367,16 +367,16 @@ const G = (r) => new Proxy(r, {
         e.debugLog(o, ...s);
       };
   }
-}), j = G(new k()), W = (r, e) => {
+}), $ = G(new k()), W = (r, e) => {
   const t = (o, s) => o === void 0 || o === "" && String(s) === "0" ? !1 : String(o) !== String(s);
   t(e.style.copybg, S.style.copybg) && r.style.setProperty("--cc-copy-bg", e.style.copybg), t(e.style.copiedbg, S.style.copiedbg) && r.style.setProperty("--cc-copied-bg", e.style.copiedbg), t(e.style.copycolor, S.style.copycolor) && r.style.setProperty("--cc-copy-color", e.style.copycolor), t(e.style.copiedcolor, S.style.copiedcolor) && r.style.setProperty("--cc-copied-color", e.style.copiedcolor), t(e.style.scale, S.style.scale) && r.style.setProperty("--cc-scale", String(e.style.scale)), t(e.style.offset, S.style.offset) && r.style.setProperty("--cc-offset", String(e.style.offset)), t(e.style.radius, S.style.radius) && r.style.setProperty("--cc-radius", String(e.style.radius)), t(e.style.copyborder, S.style.copyborder) && e.style.copyborder !== "" && r.style.setProperty("--cc-copyborder", e.style.copyborder), t(e.style.copiedborder, S.style.copiedborder) && e.style.copiedborder !== "" && r.style.setProperty("--cc-copiedborder", e.style.copiedborder);
 }, E = {
   copy: '<svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" version="1.1"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"></path><path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"></path></svg>',
   copied: '<svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16"><path d="M15.7,2.8c0.4,0.4,0.4,1,0,1.4L6,13.9c-0.4,0.4-1,0.4-1.4,0L0.3,9.6c-0.4-0.4-0.4-1,0-1.4c0.4-0.4,1-0.4,1.4,0l3.6,3.6l9-9C14.7,2.4,15.3,2.4,15.7,2.8z"/></svg>'
 }, Z = (r, e) => {
-  var i, p, d;
-  const t = (i = e.iconsvg) != null && i.copy && e.iconsvg.copy !== "" ? e.iconsvg.copy : E.copy, o = (p = e.iconsvg) != null && p.copied && e.iconsvg.copied !== "" ? e.iconsvg.copied : E.copied, s = r.dataset.ccDisplay || e.display;
-  s === "icons" || s === "both" ? (r.innerHTML = "<span></span>", r.textholder = r.querySelector("span"), r.insertAdjacentHTML("afterbegin", o), r.insertAdjacentHTML("afterbegin", t), r.dataset.ccDisplay === "icons" && e.tooltip && (r.textholder.style.display = "flex")) : (r.innerHTML = "<span></span>", r.textholder = r.querySelector("span")), r.textholder && (r.textholder.textContent = r.dataset.ccCopy ? r.dataset.ccCopy : ((d = e.text) == null ? void 0 : d.copy) || "Copy");
+  var l, p, a;
+  const t = (l = e.iconsvg) != null && l.copy && e.iconsvg.copy !== "" ? e.iconsvg.copy : E.copy, o = (p = e.iconsvg) != null && p.copied && e.iconsvg.copied !== "" ? e.iconsvg.copied : E.copied, s = r.dataset.ccDisplay || e.display;
+  s === "icons" || s === "both" ? (r.innerHTML = "<span></span>", r.textholder = r.querySelector("span"), r.insertAdjacentHTML("afterbegin", o), r.insertAdjacentHTML("afterbegin", t), r.dataset.ccDisplay === "icons" && e.tooltip && (r.textholder.style.display = "flex")) : (r.innerHTML = "<span></span>", r.textholder = r.querySelector("span")), r.textholder && (r.textholder.textContent = r.dataset.ccCopy ? r.dataset.ccCopy : ((a = e.text) == null ? void 0 : a.copy) || "Copy");
 }, K = async (r, e) => {
   if (e.plaintextonly) {
     let t;
@@ -389,58 +389,47 @@ const G = (r) => new Proxy(r, {
       let o;
       const s = t.querySelector("table.hljs-ln");
       if (s) {
-        const a = s.querySelectorAll("td.hljs-ln-numbers");
-        for (const f of a)
+        const d = s.querySelectorAll("td.hljs-ln-numbers");
+        for (const f of d)
           f.style.display = "none";
         o = Array.from(s.querySelectorAll("td.hljs-ln-code")).map((f) => f.textContent).join(`
 `);
       } else
         o = t.innerText;
       const p = `
-				<style>
-					${Array.from(document.styleSheets).flatMap((a) => {
+				<style>${Array.from(document.styleSheets).flatMap((d) => {
         try {
-          return Array.from(a.cssRules);
+          return Array.from(d.cssRules);
         } catch {
           return [];
         }
-      }).filter((a) => a.cssText.includes(".hljs") || a.cssText.includes("pre code") || a.cssText.includes("code[class") || a.cssText.includes(".language-") || a.cssText.includes("pre") || a.cssText.includes("code")).map((a) => a.cssText).join(`
-`)}
-					pre, code, .hljs, .hljs-ln-code {
-						white-space: pre !important;
-						font-family: monospace !important;
-					}
-				</style>
-				<div>
-					${t.outerHTML}
-				</div>
-			`, d = new Blob([p], { type: "text/html" }), y = new Blob([o], { type: "text/plain" }), u = new ClipboardItem({
-        "text/html": d,
+      }).filter((d) => d.cssText.includes(".hljs") || d.cssText.includes("pre code") || d.cssText.includes("code[class") || d.cssText.includes(".language-") || d.cssText.includes("pre") || d.cssText.includes("code")).map((d) => d.cssText).join(`
+`)}pre, code, .hljs, .hljs-ln-code { white-space: pre !important; font-family: monospace !important;}</style>
+				<div>${t.outerHTML}</div>
+			`, a = new Blob([p], { type: "text/html" }), y = new Blob([o], { type: "text/plain" }), u = new ClipboardItem({
+        "text/html": a,
         "text/plain": y
       });
       await navigator.clipboard.write([u]);
     } catch (t) {
       console.error("Rich text clipboard error:", t), await navigator.clipboard.writeText(r.innerText);
     }
-}, Y = (r) => {
-  const e = document.querySelectorAll(".codeblock > button:not(.code-copy-button)");
-  for (const t of e)
-    t.addEventListener("click", async () => {
-      console.log("Button clicked");
-      const o = t, s = o.nextElementSibling;
-      if (!s || !(s instanceof HTMLElement)) {
-        console.error("Could not find pre element");
+}, Y = (r, e) => {
+  const t = r.querySelectorAll(".codeblock > button:not(.code-copy-button)");
+  for (const o of t)
+    o.addEventListener("click", async () => {
+      const s = o, l = s.nextElementSibling;
+      if (!l || !(l instanceof HTMLElement))
         return;
-      }
-      const i = s.querySelector("code");
-      if (!i || !(i instanceof HTMLElement)) {
-        console.error("Could not find code element");
+      const p = l.querySelector("code");
+      if (!p || !(p instanceof HTMLElement)) {
+        $.error("Could not find code element");
         return;
       }
       try {
-        console.log("Attempting to copy from:", i), await K(i, r), console.log("doClipboard completed successfully"), J(o, r);
-      } catch (p) {
-        console.error("Error copying code:", p);
+        await K(p, e), J(s, e);
+      } catch (a) {
+        $.error("Error copying code:", a);
       }
     });
 }, J = (r, e) => {
@@ -449,28 +438,28 @@ const G = (r) => new Proxy(r, {
   }, e.timeout);
 }, Q = async (r, e, t) => {
   var y;
-  const o = e.getRevealElement(), s = 'pre:not([data-cc="false"]) > code', i = document.querySelector("[name=generator]"), p = ((y = i == null ? void 0 : i.getAttribute("content")) == null ? void 0 : y.includes("quarto")) ?? !1;
-  let d = [];
-  if (o && (W(o, t), d = Array.from(o.querySelectorAll(s)).map((u) => u.parentElement).filter((u) => u instanceof HTMLPreElement)), d.length > 0) {
-    j.log(`${d.length} code blocks found`, d);
-    for (const u of d) {
-      let a = null, f = null;
-      const m = u.parentElement;
-      if (p && (m != null && m.matches(".sourceCode")) ? (a = m, f = a, m.dataset.did = "quartoblock") : (f = u, m != null && m.classList.contains("codeblock") || (a = document.createElement("div"), m == null || m.insertBefore(a, u))), a && f) {
-        a.classList.add("codeblock"), a.appendChild(u), (t.display === "icon" || t.display === "icons" || t.display === "both") && f && (f.dataset.ccDisplay = t.display), u.classList.contains("fragment") && (a.classList.add("fragment"), u.classList.remove("fragment"));
+  const o = e.getRevealElement(), s = 'pre:not([data-cc="false"]) > code', l = document.querySelector("[name=generator]"), p = ((y = l == null ? void 0 : l.getAttribute("content")) == null ? void 0 : y.includes("quarto")) ?? !1;
+  let a = [];
+  if (o && (W(o, t), a = Array.from(o.querySelectorAll(s)).map((u) => u.parentElement).filter((u) => u instanceof HTMLPreElement)), a.length > 0 && o) {
+    $.log(`${a.length} code blocks found`, a);
+    for (const u of a) {
+      let d = null, f = null;
+      const b = u.parentElement;
+      if (p && (b != null && b.matches(".sourceCode")) ? (d = b, f = d, b.dataset.did = "quartoblock") : (f = u, b != null && b.classList.contains("codeblock") || (d = document.createElement("div"), b == null || b.insertBefore(d, u))), d && f) {
+        d.classList.add("codeblock"), d.appendChild(u), (t.display === "icon" || t.display === "icons" || t.display === "both") && f && (f.dataset.ccDisplay = t.display), u.classList.contains("fragment") && (d.classList.add("fragment"), u.classList.remove("fragment"));
         const v = document.createElement("button");
         v.dataset.cc = "true", v.title = "Copy to Clipboard", t.button !== "always" && (v.dataset.cc = t.button);
-        const $ = ["cc", "ccCopy", "ccCopied", "ccDisplay"];
-        for (const w of $)
+        const x = ["cc", "ccCopy", "ccCopied", "ccDisplay"];
+        for (const w of x)
           f.dataset[w] && (v.dataset[w] = f.dataset[w], delete f.dataset[w]);
         const C = u.querySelectorAll("code")[0];
-        C != null && C.innerText && (Z(v, t), a.insertBefore(v, u));
+        C != null && C.innerText && (Z(v, t), d.insertBefore(v, u));
       }
     }
-    Y(t);
+    Y(o, t);
   }
 }, D = "copycode", X = async (r, e, t) => {
-  j && t.debug && j.initialize(!0, D), await V(r, t), await Q(r, e, t);
+  $ && t.debug && $.initialize(!0, D), await V(r, t), await Q(r, e, t);
 }, ee = () => new _(D, X, S).createInterface();
 export {
   ee as default

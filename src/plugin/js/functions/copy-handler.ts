@@ -1,5 +1,6 @@
 import type { Config } from '../config';
 import { doClipboard } from './do-clipboard';
+import { pluginDebug as debug } from 'reveal.js-plugintoolkit';
 
 interface CopyButtonElement extends HTMLElement {
   textholder?: HTMLElement;
@@ -12,19 +13,17 @@ interface CopyButtonElement extends HTMLElement {
 }
 
 
-export const setupCopyHandlers = (config: Config): void => {
-  const buttons = document.querySelectorAll('.codeblock > button:not(.code-copy-button)');
+export const setupCopyHandlers = (revealEl: HTMLElement, config: Config): void => {
+  const buttons = revealEl.querySelectorAll('.codeblock > button:not(.code-copy-button)');
 
   for (const button of buttons) {
     button.addEventListener('click', async () => {
-      console.log('Button clicked');
       const buttonEl = button as CopyButtonElement;
       
       // In Quarto, the code is in a pre element that's a sibling of our button
       const preElement = buttonEl.nextElementSibling;
       
       if (!preElement || !(preElement instanceof HTMLElement)) {
-        console.error('Could not find pre element');
         return;
       }
       
@@ -32,17 +31,15 @@ export const setupCopyHandlers = (config: Config): void => {
       const codeElement = preElement.querySelector('code');
       
       if (!codeElement || !(codeElement instanceof HTMLElement)) {
-        console.error('Could not find code element');
+        debug.error('Could not find code element');
         return;
       }
       
       try {
-        console.log('Attempting to copy from:', codeElement);
         await doClipboard(codeElement, config);
-        console.log('doClipboard completed successfully');
         handleSuccess(buttonEl, config);
       } catch (error) {
-        console.error('Error copying code:', error);
+        debug.error('Error copying code:', error);
       }
     });
   }

@@ -49,13 +49,7 @@ http.createServer(function (request, response) {
       	embedded: true, keyboardCondition: 'focused',
       	margin: 0.1, maxScale: 1.8, width: 1080, height: 700,
       	overview: false, center: true, controlsTutorial: false,
-      	plugins: [ CopyCode, RevealHighlight ],
-      	copycode: {
-      		appearparents: true,
-      		appearevent: 'auto',
-      		autoappear: true,
-      		autoelements: {'ul li': 'animate__fadeInLeft', 'h2': {"animation":"animate__shrinkIn", "speed":"slow", "delay":"800"}}
-      	}
+      	plugins: [ CopyCode, RevealHighlight ]
       });
       
       const deck2 = new Reveal(document.querySelector("#deck2"), {
@@ -64,10 +58,19 @@ http.createServer(function (request, response) {
       	overview: false, center: true, controlsTutorial: false,
       	plugins: [ CopyCode, RevealHighlight ],
       	copycode: {
-      		appearparents: true,
-      		appearevent: 'slidechanged',
-      		autoappear: true,
-      		autoelements: {'ul li': 'animate__fadeInRight', 'h2': {"animation":"animate__fadeInUp", "speed":"slow", "delay":"800"}}
+      		debug: true,
+      		timeout: 1200,
+      		button: "always",
+      		display: "icons",
+      		style: { 
+      			copybg: "rgba(255,255,255,128)", 
+      			copiedbg: "white", 
+      			copyborder: "2px solid gray", 
+      			copiedborder: "2px solid green",
+      			copiedcolor: "green", 
+      			offset: 0.4,
+      			radius: 0.2
+      		}
       	}
       });
       deck1.initialize();

@@ -1,4 +1,4 @@
-// Import the CSS.
+
 import "../css/index.scss";
 
 import type { Api } from 'reveal.js';

@@ -25,7 +25,7 @@ export const main = async (plugin: PluginBase<Config>, deck: Api, config: Config
             .filter((e): e is HTMLPreElement => e instanceof HTMLPreElement);
     }
 
-    if (preblocks.length > 0) {
+    if (preblocks.length > 0 && revealEl) {
 
         debug.log(`${preblocks.length} code blocks found`, preblocks);
 
@@ -92,6 +92,6 @@ export const main = async (plugin: PluginBase<Config>, deck: Api, config: Config
             }
         }
 
-        setupCopyHandlers(config);
+        setupCopyHandlers(revealEl, config);
     }
 };
