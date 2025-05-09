@@ -8,7 +8,6 @@ import { PluginBase, pluginCSS, pluginDebug as debug } from 'reveal.js-plugintoo
 import { main } from './main';
 
 
-
 const PLUGIN_ID = 'copycode';
 
 const init = async (plugin: PluginBase<Config>, deck: Api, config: Config): Promise<void> => {
@@ -18,7 +17,7 @@ const init = async (plugin: PluginBase<Config>, deck: Api, config: Config): Prom
     }
 
     await pluginCSS(plugin, config);
-    await main(plugin, deck, config);
+    await main(deck, config);
 }
 
 export default () => {
