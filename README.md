@@ -77,9 +77,9 @@ If you're using ES modules, you can add it like this:
 
 ```html
 <script type="module">
-	// This will need a server
 	import Reveal from './dist/reveal.mjs';
-	import CopyCode from './plugin/copycode/copycode';
+	import CopyCode from './plugin/copycode/copycode.mjs';
+  import 'reveal.js-copycode/plugin/copycode/copycode.css';
 	Reveal.initialize({
 		// ...
 		plugins: [ CopyCode ]
@@ -102,6 +102,15 @@ import 'reveal.js-copycode/plugin/copycode/copycode.css';
 CopyCode will detect if it runs in a module environment and will then not autoload the CSS. You can still set `cssautoload` to `true` if you like, but your bundler (Vite, Webpack) may not like that. In any of these cases, `import` the CSS file yourself.
 
 If you want to change the CopyCode style, you do a lot of that via the Reveal.js options. Or you can simply make your own style and use that stylesheet instead. Linking to your custom styles can be managed through the `csspath` option of CopyCode or through `import` when using modules.
+
+#### Custom CSS
+If and when you decide to create your own CSS file, make sure that you also include the following CSS variable, that is used by the plugin to avoid loading the CSS multiple times, and to avoid using the autoloading feature when using modules:
+
+```css
+:root {
+    --cssimported-copycode: true;
+}
+```
 
 
 ## Now change it

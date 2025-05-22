@@ -1,5 +1,8 @@
 extends templates/layouts/_reveal.pug
 
+append variables
+	- presentation.title = presentation.title + ": custom"
+
 block slides
 	include slides/_slides
 

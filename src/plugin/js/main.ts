@@ -2,7 +2,7 @@ import type { Api } from 'reveal.js';
 import type { Config } from './config';
 import { pluginDebug as debug} from 'reveal.js-plugintoolkit';
 
-import { applyCustomStyles } from './functions/style-global'; // Import the new function
+import { applyCustomStyles } from './functions/style-global';
 import { styleIndividualButtons } from './functions/style-button';
 import { setupCopyHandlers } from './functions/copy-handler';
 

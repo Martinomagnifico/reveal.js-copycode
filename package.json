@@ -32,6 +32,8 @@
             "import": "./plugin/copycode/copycode.mjs",
             "require": "./plugin/copycode/copycode.js"
         },
+        "./plugin/copycode/copycode.esm.js": "./plugin/copycode/copycode.mjs",
+
         "./plugin/copycode/copycode.css": "./plugin/copycode/copycode.css",
         "./copycode.css": "./plugin/copycode/copycode.css"
     },
