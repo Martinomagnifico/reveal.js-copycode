@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>CopyCode demo: custom</title>
+    <title>CopyCode demo: custom with window style</title>
     <meta name="author" content="Martijn De Jongh (Martino)">
     <link rel="icon" href="data:,">
     <link rel="stylesheet" href="dist/reset.css">
@@ -19,14 +19,13 @@
         <section>
           <h1>CopyCode</h1>
           <h3>for Reveal.js</h3>
-          <p class="small">Customized copy button</p>
-          <pre><code class="hljs javascript" data-line-numbers style="font-size: 1em">let why = `Because we always want to copy code
-           during our presentations, right?`</code></pre>
+          <p class="small">Customized copy button with window style</p>
+          <pre data-cc-window="JavaScript"><code class="hljs javascript" data-line-numbers style="font-size: 1em">let why = `Because we always want to copy code during our presentations, right?`</code></pre>
         </section>
         <section>
           <h3>Configuring CopyCode</h3>
-          <pre><code class="hljs javascript">copycode: { timeout: 1200, button: "hover", display: "icons", style: { copybg: "rgba(255,255,255,128)", copiedbg: "white", copyborder: "2px solid gray", copiedborder: "2px solid green", copiedcolor: "green", offset: 0.5, radius: 0.2} }</code></pre>
-          <p class="small">Add the above code to the Reveal.js configuration, and you will get a 'GitHub-flavored' copy button.</p>
+          <pre><code class="hljs javascript">copycode: { timeout: 1200, button: "always", display: "icons", style: { copybg: "transparent", copiedbg: "white", copycolor: "white", copiedbg: "transparent"}, window: { controls: "light", controlsOpacity: 0.5, padding: "1rem" } }</code></pre>
+          <p class="small">Add the above code to the Reveal.js configuration, and you will get a window-mode and button as shown here.</p>
         </section>
         <section>
           <p>This is just an example file to show a customized copy button. For more CopyCode options, check the <a href="demo.html">demo</a>.</p>
@@ -42,17 +41,19 @@
       	history: true, center: true, controlsTutorial: false,
       	plugins: [ CopyCode, RevealHighlight ],
       	copycode: {
-      		timeout: 1200, 
+      		timeout: 1200,
       		button: "always", 
       		display: "icons", 
-      		style: { 
-      			copybg: "rgba(255,255,255,128)", 
-      			copiedbg: "white", 
-      			copyborder: "2px solid gray", 
-      			copiedborder: "2px solid green",
-      			copiedcolor: "green", 
-      			offset: 0.4,
-      			radius: 0.2
+      		style: {
+      			copybg: "transparent", 
+      			copiedbg: "transparent", 
+      			copycolor: "white",
+      			copiedcolor: "white",
+      		},
+      		window: {
+      			controls: "light",
+      			controlsOpacity: 0.5,
+      			padding: "1rem"
       		}
       	}
       });

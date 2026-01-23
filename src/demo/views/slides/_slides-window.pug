@@ -1,0 +1,20 @@
+section
+	h1 CopyCode
+	h3 for Reveal.js
+	p.small Customized copy button with window style
+	pre(data-cc-window="JavaScript")
+		code.hljs.javascript(data-line-numbers, style="font-size: 1em").
+			let why = `Because we always want to copy code during our presentations, right?`
+		//-
+
+section
+	h3 Configuring CopyCode
+	pre
+		code.hljs.javascript.
+			copycode: { timeout: 1200, button: "always", display: "icons", style: { copybg: "transparent", copiedbg: "white", copycolor: "white", copiedbg: "transparent"}, window: { controls: "light", controlsOpacity: 0.5, padding: "1rem" } }
+		//-
+
+	p.small Add the above code to the Reveal.js configuration, and you will get a window-mode and button as shown here.
+
+section
+	p This is just an example file to show a customized copy button. For more CopyCode options, check the #[a(href="demo.html") demo].

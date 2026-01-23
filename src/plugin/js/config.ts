@@ -1,5 +1,12 @@
+export interface WindowConfig {
+	title?: string;
+	controls?: "color" | "light" | "dark";
+	controlsOpacity?: number;
+	padding?: string;
+}
+
 export interface Config {
-	button: "always" | "hover" | "click";
+	button: "always" | "hover" | "false";
 	debug?: boolean;
 	display: "text" | "icon" | "icons" | "both";
 	text: {
@@ -19,6 +26,7 @@ export interface Config {
 		offset: number;
 		radius: number;
 	};
+	window: boolean | WindowConfig;
 	tooltip: boolean;
 	iconsvg: {
 		copy: string;
@@ -26,7 +34,8 @@ export interface Config {
 	};
 	cssautoload: boolean;
 	csspath: string;
-	// The values below are from the older version of the plugin
+
+	// Legacy support
 	copybg?: string;
 	copiedbg?: string;
 	copycolor?: string;
@@ -56,15 +65,16 @@ const defaultConfig: Config = {
 		copiedborder: "",
 		scale: 1,
 		offset: 0,
-		radius: 0
+		radius: 0,
 	},
+	window: false,
 	tooltip: true,
 	iconsvg: {
-		copy: '',   // User can paste <svg>…</svg> code here
-		copied: ''  // User can paste <svg>…</svg> code here
+		copy: "",
+		copied: "",
 	},
 	cssautoload: true,
-	csspath: ''
+	csspath: "",
 };
 
 export { defaultConfig };

@@ -1,10 +1,10 @@
 extends templates/layouts/_reveal.pug
 
 append variables
-	- presentation.title = presentation.title + ": custom"
+	- presentation.title = presentation.title + ": custom with window style"
 
 block slides
-	include slides/_slides-custom
+	include slides/_slides-window
 
 block append scripts
 	+revealsrc("script", "plugin/highlight/highlight.js")
@@ -17,17 +17,19 @@ block append scripts
 				history: true, center: true, controlsTutorial: false,
 				plugins: [ CopyCode, RevealHighlight ],
 				copycode: {
-					timeout: 1200, 
+					timeout: 1200,
 					button: "always", 
 					display: "icons", 
-					style: { 
-						copybg: "rgba(255,255,255,128)", 
-						copiedbg: "white", 
-						copyborder: "2px solid gray", 
-						copiedborder: "2px solid green",
-						copiedcolor: "green", 
-						offset: 0.4,
-						radius: 0.2
+					style: {
+						copybg: "transparent", 
+						copiedbg: "transparent", 
+						copycolor: "white",
+						copiedcolor: "white",
+					},
+					window: {
+						controls: "light",
+						controlsOpacity: 0.5,
+						padding: "1rem"
 					}
 				}
 			});
@@ -44,14 +46,16 @@ block append scripts
 					timeout: 1200,
 					button: "always",
 					display: "icons",
-					style: { 
-						copybg: "rgba(255,255,255,128)", 
-						copiedbg: "white", 
-						copyborder: "2px solid gray", 
-						copiedborder: "2px solid green",
-						copiedcolor: "green", 
-						offset: 0.4,
-						radius: 0.2
+					style: {
+						copybg: "transparent", 
+						copiedbg: "transparent", 
+						copycolor: "white",
+						copiedcolor: "white",
+					},
+					window: {
+						controls: "light",
+						controlsOpacity: 0.5,
+						padding: "1rem"
 					}
 				}
 			});

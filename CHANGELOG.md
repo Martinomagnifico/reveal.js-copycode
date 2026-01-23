@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.4.0] - 2026-01-23
+
+### Added
+- Added a new 'window' option to show the codeblock in a window-like frame. 
+
+### Changed
+- Uses newer version of pluginToolkit that fixes CSS loading in fixed/prod/static modes
+- Newer version of Vite used
+
+
 ## [1.3.2] - 2024-05-05
 
 ### Changed

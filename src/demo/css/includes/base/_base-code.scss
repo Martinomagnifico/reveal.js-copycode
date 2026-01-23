@@ -11,6 +11,11 @@
 	}
 }
 
+.reveal code.hljs, .codeblock[data-cc-window] {
+	background: var(--code-full-bg);
+	border-radius: 0.5rem;
+}
+
 p.code, p code, small code, .small code, li code {
 	background: var(--code-rgba-bg);
 	padding: 0.15em 0.25em;
@@ -23,7 +28,6 @@ p.code, p code, small code, .small code, li code {
 
 .reveal pre code {
 	display: block;
-	padding: 5px;
 	overflow: auto;
 	max-height: 400px;
 	word-wrap: normal;

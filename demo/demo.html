@@ -22,8 +22,7 @@
         <section>
           <h1>CopyCode</h1>
           <h3>for Reveal.js</h3><br>
-          <pre><code class="hljs javascript" data-line-numbers style="font-size: 1em">let why = `Because we always want to copy code
-           during our presentations, right?`</code></pre>
+          <pre data-cc-window="true"><code class="hljs javascript" data-line-numbers style="font-size: 1em">let why = `Because we always want to copy code during our presentations, right?`</code></pre>
         </section>
         <section>
           <h3>Works out of the box</h3>
@@ -62,20 +61,30 @@ http.createServer(function (request, response) {
         <section>
           <section>
             <h2>Now change it</h2>
-            <p>You can change the visibility, the icon use or button texts easily per element: </p>
+            <p>You can change window mode, visibility, the icon use or button texts easily per element:</p>
+          </section>
+          <section>
+            <h4>Make it in a window style </h4>
+            <pre data-cc-window="My Code Example"><code class="hljs html" data-line-numbers>&lt;pre data-cc-window="My Code Example"&gt;
+    &lt;code&gt;
+        Here is the code
+    &lt;/code&gt;
+&lt;/pre&gt;</code></pre>
+            <p class="small">Data attributes for the window style are: <code>data-cc-window-title</code> (an other way of setting the title, where values like <code>true</code> can be used), <code>data-cc-window-controls</code>, <code>data-cc-window-controlopacity</code>, <code>data-cc-window-padding</code>.</p>
+            <p class="small">This can also be set globally. See <a href="#/options">Global options</a>.</p>
           </section>
           <section>
             <h4>Change the visibility per element</h4>
-            <p class="small">Turn it off</p>
-            <pre data-cc="false"><code class="hljs html" data-line-numbers>&lt;pre data-cc="false"&gt;
+            <p class="small">Turn the button off</p>
+            <pre data-cc="false"><code class="hljs html" data-line-numbers>&lt;pre data-cc-button="false"&gt; // Or turn it all off, including window, with data-cc="false"
     &lt;code&gt;
-        Here is the code	
+        Here is the code
     &lt;/code&gt;
 &lt;/pre&gt;</code></pre>
             <p class="small">Or show only on hover over the code block</p>
-            <pre data-cc="hover"><code class="hljs html" data-line-numbers>&lt;pre data-cc="hover"&gt;
+            <pre data-cc-button="hover"><code class="hljs html" data-line-numbers>&lt;pre data-cc-button="hover"&gt;
     &lt;code&gt;
-        Here is the code	
+        Here is the code
     &lt;/code&gt;
 &lt;/pre&gt;</code></pre>
             <p class="small">This can also be set globally. See <a href="#/options">Global options</a>. Hover-only codeblocks will <em>always</em> show the copy button on touch devices.</p>
@@ -84,12 +93,12 @@ http.createServer(function (request, response) {
             <h4>Change the display of icons per element</h4>
             <pre data-cc-display="icons"><code class="hljs html" data-line-numbers>&lt;pre data-cc-display="icons"&gt;
     &lt;code&gt;
-        Here is the code	
+        Here is the code
     &lt;/code&gt;
 &lt;/pre&gt;</code></pre>
             <pre data-cc-display="both"><code class="hljs html" data-line-numbers>&lt;pre data-cc-display="both"&gt;
     &lt;code&gt;
-        Here is the code	
+        Here is the code
     &lt;/code&gt;
 &lt;/pre&gt;</code></pre>
             <p class="small">This can also be set globally. See <a href="#/options">Global options</a>.</p>
@@ -115,8 +124,10 @@ http.createServer(function (request, response) {
                 <li>plaintextonly</li>
                 <li>timeout</li>
                 <li>style</li>
+                <li>window</li>
                 <li>tooltip</li>
                 <li>iconsvg</li>
+                <li>cssautoload</li>
                 <li>csspath</li>
               </ol>
             </div>
@@ -126,7 +137,7 @@ http.createServer(function (request, response) {
             <p class="small">The <code>button</code> option is to show the button, always or only on hover. </p>
             <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
     copycode: {
-        button: "always" // "always"|"hover"
+        button: "always" // "always" | "hover"
     },
     plugins: [ CopyCode ]
 })</code></pre>
@@ -137,7 +148,7 @@ http.createServer(function (request, response) {
             <p class="small">The <code>display</code> option is to show text in the button, icons, or both.</p>
             <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
     copycode: {
-        display: "text" // "text"|"icons"|"both"
+        display: "text" // "text" | "icons" | "both"
     },
     plugins: [ CopyCode ]
 })</code></pre>
@@ -161,7 +172,7 @@ http.createServer(function (request, response) {
             <p class="small">The <code>plaintextonly</code> option can be set to false to allow copying of rich text and styles. </p>
             <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
     copycode: {
-        plaintextonly: true // true|false
+        plaintextonly: true // true | false
     },
     plugins: [ CopyCode ]
 })</code></pre>
@@ -197,7 +208,23 @@ http.createServer(function (request, response) {
 })</code></pre>
           </section>
           <section>
-            <h4>Option 7: tooltip</h4>
+            <h4>Option 7: window</h4>
+            <p class="small">The <code>window</code> option (if not <code>false</code>) shows styled window controls, an optional title, and the copybutton vertically aligned at the top of the codeblock. The button will then never cover any code.</p>
+            <pre><code class="hljs js" data-line-numbers="3-8">Reveal.initialize({
+    copycode: {
+        window: {
+            title: "",          // Default window title
+            controls: "color",  // "color" | "light" | "dark"
+            controlsOpacity: 1  // 0.0 - 1.0
+            padding: "0.5rem"   // CSS size for padding around whole window
+        }
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+            <p class="small">All of the window options can also be set per element with data-attributes.</p>
+          </section>
+          <section>
+            <h4>Option 8: tooltip</h4>
             <p class="small">The <code>tooltip</code> option makes sure that the 'copied' text is shown in a tooltip, when an icon-only button display is used.</p>
             <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
     copycode: {
@@ -207,7 +234,7 @@ http.createServer(function (request, response) {
 })</code></pre>
           </section>
           <section>
-            <h4>Option 8: iconsvg</h4>
+            <h4>Option 9: iconsvg</h4>
             <p class="small">The <code>iconsvg</code> option is an object with placeholders for SVG icons for the 'copy' and 'copied' state. If left empty, it will use the default icons.</p>
             <pre><code class="hljs js" data-line-numbers="3-6">Reveal.initialize({
     copycode: {
@@ -220,7 +247,18 @@ http.createServer(function (request, response) {
 })</code></pre>
           </section>
           <section>
-            <h4>Option 9: csspath</h4>
+            <h4>Option 10: cssautoload</h4>
+            <p class="small">CopyCode will automatically load the CSS if this is set to <code>true</code>. </p>
+            <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
+    copycode: {
+        cssautoload: true
+    },
+    plugins: [ CopyCode ]
+})</code></pre>
+            <p class="small">If CopyCode runs in a bundler or module environment, where you should use <code>import</code> for your styling, it will automatically turn off autoloading. You can still turn on autoloading, but you will need to manually add this setting like shown above.</p>
+          </section>
+          <section>
+            <h4>Option 11: csspath</h4>
             <p class="small">The <code>csspath</code> option can be used when the you want to use your own stylesheet, instead of the provided one. </p>
             <pre><code class="hljs js" data-line-numbers="3">Reveal.initialize({
     copycode: {
@@ -234,7 +272,7 @@ http.createServer(function (request, response) {
         <section>
           <h3>Using the global options</h3>
           <p class="small">The global options make CopyCode very customizable. For example, to make all buttons look more like the standard GitHub copy-buttons, you can tweak the configuration like this:</p>
-          <pre data-cc-copy="Copy HTML" data-cc-copied="Done"><code class="hljs json">copycode: { timeout: 1200, button: "hover", display: "icons", style: { copybg: "rgba(255,255,255,128)", copiedbg: "white", copyborder: "2px solid gray", copiedborder: "2px solid green", copiedcolor: "green", offset: 0.5, radius: 0.2} }</code></pre>
+          <pre data-cc-copy="Copy" data-cc-copied="Copied!"><code class="hljs json">copycode: { timeout: 1200, button: "hover", display: "icons", style: { copybg: "rgba(255,255,255,128)", copiedbg: "white", copyborder: "2px solid gray", copiedborder: "2px solid green", copiedcolor: "green", offset: 0.5, radius: 0.2} }</code></pre>
         </section>
       </div>
     </div>

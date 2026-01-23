@@ -1,7 +1,9 @@
 // vite.config.js
 import { resolve } from "path";
 import { defineConfig } from "vite";
+// @ts-ignore
 import vituum from "vituum";
+// @ts-ignore
 import pug from "@vituum/vite-plugin-pug";
 import pkg from "./package.json";
 import { dynamicIndex } from './vite-plugins/vite-plugin-dynamic-index';
@@ -15,7 +17,6 @@ export default defineConfig({
         rollupOptions: {
             input: [
                 resolve(__dirname, "src/demo/views/demo*.pug"),
-                // resolve(__dirname, "src/demo/views/*.html"),
                 resolve(__dirname, "src/demo/css/*.scss"),
             ],
             external: [/^\/node_modules\/reveal\.js\/.*/],

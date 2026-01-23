@@ -1,9 +1,6 @@
 import type { Config } from "../config";
 
-export const doClipboard = async (
-	codeBlock: HTMLElement,
-	config: Config
-): Promise<void> => {
+export const doClipboard = async (codeBlock: HTMLElement, config: Config): Promise<void> => {
 	if (config.plaintextonly) {
 		let content: string;
 
@@ -45,7 +42,7 @@ export const doClipboard = async (
 				.flatMap((sheet) => {
 					try {
 						return Array.from(sheet.cssRules);
-					} catch (e) {
+					} catch (_e) {
 						return [];
 					}
 				})

@@ -2,11 +2,12 @@ section
 	h1 CopyCode
 	h3 for Reveal.js
 	br
-	pre
+
+	pre(data-cc-window="true")
 		code.hljs.javascript(data-line-numbers, style="font-size: 1em").
-			let why = `Because we always want to copy code
-			           during our presentations, right?`
+			let why = `Because we always want to copy code during our presentations, right?`
 		//-
+
 
 section
 	h3 Works out of the box
@@ -51,25 +52,40 @@ section
 section
 	section
 		h2 Now change it
-		p You can change the visibility, the icon use or button texts easily per element: 
+		p You can change window mode, visibility, the icon use or button texts easily per element:
+
+	section
+		h4 Make it in a window style 
+		pre(data-cc-window="My Code Example")
+			code.hljs.html(data-line-numbers).
+				&lt;pre data-cc-window="My Code Example"&gt;
+				    &lt;code&gt;
+				        Here is the code
+				    &lt;/code&gt;
+				&lt;/pre&gt;
+			//-
+
+		p.small Data attributes for the window style are: #[code data-cc-window-title] (an other way of setting the title, where values like #[code true] can be used), #[code data-cc-window-controls], #[code data-cc-window-controlopacity], #[code data-cc-window-padding].
+
+		p.small This can also be set globally. See #[a(href="#/options") Global options].
 
 	section
 		h4 Change the visibility per element
-		p.small Turn it off
+		p.small Turn the button off
 		pre(data-cc="false")
 			code.hljs.html(data-line-numbers).
-				&lt;pre data-cc="false"&gt;
+				&lt;pre data-cc-button="false"&gt; // Or turn it all off, including window, with data-cc="false"
 				    &lt;code&gt;
-				        Here is the code	
+				        Here is the code
 				    &lt;/code&gt;
 				&lt;/pre&gt;
 			//-
 		p.small Or show only on hover over the code block
-		pre(data-cc="hover")
+		pre(data-cc-button="hover")
 			code.hljs.html(data-line-numbers).
-				&lt;pre data-cc="hover"&gt;
+				&lt;pre data-cc-button="hover"&gt;
 				    &lt;code&gt;
-				        Here is the code	
+				        Here is the code
 				    &lt;/code&gt;
 				&lt;/pre&gt;
 			//-
@@ -81,7 +97,7 @@ section
 			code.hljs.html(data-line-numbers).
 				&lt;pre data-cc-display="icons"&gt;
 				    &lt;code&gt;
-				        Here is the code	
+				        Here is the code
 				    &lt;/code&gt;
 				&lt;/pre&gt;
 			//-
@@ -90,7 +106,7 @@ section
 			code.hljs.html(data-line-numbers).
 				&lt;pre data-cc-display="both"&gt;
 				    &lt;code&gt;
-				        Here is the code	
+				        Here is the code
 				    &lt;/code&gt;
 				&lt;/pre&gt;
 			//-
@@ -121,6 +137,7 @@ section
 				li plaintextonly
 				li timeout
 				li style
+				li window
 				li tooltip
 				li iconsvg
 				li cssautoload
@@ -133,7 +150,7 @@ section
 			code.hljs.js(data-line-numbers="3").
 				Reveal.initialize({
 				    copycode: {
-				        button: "always" // "always"|"hover"
+				        button: "always" // "always" | "hover"
 				    },
 				    plugins: [ CopyCode ]
 				})
@@ -148,7 +165,7 @@ section
 			code.hljs.js(data-line-numbers="3").
 				Reveal.initialize({
 				    copycode: {
-				        display: "text" // "text"|"icons"|"both"
+				        display: "text" // "text" | "icons" | "both"
 				    },
 				    plugins: [ CopyCode ]
 				})
@@ -178,7 +195,7 @@ section
 			code.hljs.js(data-line-numbers="3").
 				Reveal.initialize({
 				    copycode: {
-				        plaintextonly: true // true|false
+				        plaintextonly: true // true | false
 				    },
 				    plugins: [ CopyCode ]
 				})
@@ -223,10 +240,28 @@ section
 				})
 		//-
 
+	section
+		h4 Option 7: window
+		p.small The #[code window] option (if not #[code false]) shows styled window controls, an optional title, and the copybutton vertically aligned at the top of the codeblock. The button will then never cover any code.
+		pre
+			code.hljs.js(data-line-numbers="3-8").
+				Reveal.initialize({
+				    copycode: {
+				        window: {
+				            title: "",          // Default window title
+				            controls: "color",  // "color" | "light" | "dark"
+				            controlsOpacity: 1  // 0.0 - 1.0
+				            padding: "0.5rem"   // CSS size for padding around whole window
+				        }
+				    },
+				    plugins: [ CopyCode ]
+				})
+		//-
+		p.small All of the window options can also be set per element with data-attributes.
 
 
 	section
-		h4 Option 7: tooltip
+		h4 Option 8: tooltip
 		p.small The #[code tooltip] option makes sure that the 'copied' text is shown in a tooltip, when an icon-only button display is used.
 		pre
 			code.hljs.js(data-line-numbers="3").
@@ -241,7 +276,7 @@ section
 
 
 	section
-		h4 Option 8: iconsvg
+		h4 Option 9: iconsvg
 		p.small The #[code iconsvg] option is an object with placeholders for SVG icons for the 'copy' and 'copied' state. If left empty, it will use the default icons.
 		pre
 			code.hljs.js(data-line-numbers="3-6").
@@ -258,7 +293,7 @@ section
 
 
 	section
-		h4 Option 9: cssautoload
+		h4 Option 10: cssautoload
 		p.small CopyCode will automatically load the CSS if this is set to #[code true]. 
 
 		pre
@@ -274,7 +309,7 @@ section
 
 
 	section
-		h4 Option 10: csspath
+		h4 Option 11: csspath
 		p.small The #[code csspath] option can be used when the you want to use your own stylesheet, instead of the provided one. 
 		pre
 			code.hljs.js(data-line-numbers="3").
@@ -290,7 +325,7 @@ section
 section
 	h3 Using the global options
 	p.small The global options make CopyCode very customizable. For example, to make all buttons look more like the standard GitHub copy-buttons, you can tweak the configuration like this:
-	pre(data-cc-copy="Copy HTML", data-cc-copied="Done")
+	pre(data-cc-copy="Copy", data-cc-copied="Copied!")
 		code.hljs.json.
 			copycode: { timeout: 1200, button: "hover", display: "icons", style: { copybg: "rgba(255,255,255,128)", copiedbg: "white", copyborder: "2px solid gray", copiedborder: "2px solid green", copiedcolor: "green", offset: 0.5, radius: 0.2} }
 		//-
