@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.4.1] - 2026-02-04
+## [1.4.2] - 2026-02-04
 
 ### Changed
 - Removed min-height to fix #20

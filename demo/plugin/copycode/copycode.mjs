@@ -1,7 +1,7 @@
  /*****************************************************************
  *
  * reveal.js-copycode for Reveal.js 
- * Version 1.4.1
+ * Version 1.4.2
  * 
  * @link
  * https://github.com/martinomagnifico/reveal.js-copycode
