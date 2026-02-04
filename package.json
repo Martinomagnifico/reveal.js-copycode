@@ -82,5 +82,8 @@
         "server": {
             "open": "index.html"
         }
+    },
+    "dependencies": {
+        "reveal.js-copycode": "^1.4.1"
     }
 }
