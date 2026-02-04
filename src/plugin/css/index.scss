@@ -12,11 +12,6 @@
 	--cssimported-copycode: true;
 }
 
-// .reveal pre,
-// .codeblock {
-// 	width: 100%;
-// }
-
 .codeblock {
 	&, *,
 	*::before,
@@ -34,10 +29,6 @@
 		.code-copy-button {
 			display: none;
 		}
-	}
-
-	code.hljs {
-		min-height: 1.2em;
 	}
 
 	button[data-cc] {
